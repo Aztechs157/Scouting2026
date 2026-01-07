@@ -1,0 +1,178 @@
+<resources>
+    <string name="app_name">RoboticsScoutingMatchApp</string>
+
+    <string name="is_empty_identifier"> is empty</string>
+
+    <!--    Competition Selection   -->
+    <!-- Competitions
+    Granite State
+    Waterbury
+    URI
+    WPI
+    UVM
+    District Champs
+    Worlds
+    test
+    -->
+    <!-- Off-seasons
+    Mayhem
+    Battlecry
+    NERD
+    BOB
+    -->
+    <string name="competition_header">Please Choose Current Competition</string>
+
+    <string name="comp_mayhem">Mayhem</string>
+    <string name="comp_battlecry">Battlecry</string>
+    <string name="comp_nerd">NERD</string>
+    <string name="comp_bay_battle">BOB</string>
+    <string name="comp_granite_state">Granite State</string>
+    <string name="comp_waterbury">Waterbury</string>
+    <string name="comp_uri">URI</string>
+    <string name="comp_wpi">WPI</string>
+    <string name="comp_uvm">UVM</string>
+    <string name="comp_dcmp">District Championships</string>
+    <string name="comp_worlds">Worlds</string>
+    <string name="comp_test">Test</string>
+
+    <!--    Prematch  -->
+    <string name="header1">Pre-Match</string>
+
+    <string name="prompt_scout_name">Scout Name</string>
+    <string name="text_edit_scout_name">Scout</string>
+
+    <string name="prompt_match_number">Match Number</string>
+    <string name="text_edit_match_number">Match</string>
+
+    <string name="prompt_team_number">Team Number</string>
+    <string name="text_edit_team_number">Team</string>
+
+    <string name="prompt_team_color">Team Color</string>
+    <string name="text_edit_team_color">color</string>
+
+    <string name="color_red">Red</string>
+    <string name="color_blue">Blue</string>
+
+    <string name="button_next">Next</string>
+    <string name="button_back">Back</string>
+
+    <string name="preloaded_coral">Did they have a preloaded coral?</string>
+    <string name="scouting_human_player">Are you scouting the human player?</string>
+    <!--Auto -->
+    <string name="header2">Autonomous</string>
+
+
+    <string name="leave_start_position">Leave Starting Area</string>
+    <string name="get_auto_coop">Auto Co-op point</string>
+
+    <string name="prompt_starting_position">Starting Position</string>
+
+    <string name="position1">Position 1</string>
+    <string name="position2">Position 2</string>
+    <string name="position3">Position 3</string>
+    <string name="position4">Position 4</string>
+    <string name="position5">Position 5</string>
+    <string name="position6">Position 6</string>
+
+    <string name="took_from_left">Taken from left human player station</string>
+    <string name="took_from_right">Taken from left human player station</string>
+
+    <string name="level1">L1</string>
+    <string name="level2">L2</string>
+    <string name="level3">L3</string>
+    <string name="level4">L4</string>
+
+    <string name="attempted_coral">Attempted Coral</string>
+    <string name="scored_coral">Scored Coral</string>
+    <string name="algae">Algae</string>
+
+    <string name="attempted_coral_lvl1">Attempted Coral Lvl 1</string>
+    <string name="scored_coral_lvl1">Scored Coral Lvl 1</string>
+
+    <string name="attempted_coral_lvl2">Attempted Coral Lvl 2</string>
+    <string name="scored_coral_lvl2">Scored Coral Lvl 2</string>
+
+    <string name="attempted_coral_lvl3">Attempted Coral Lvl 3</string>
+    <string name="scored_coral_lvl3">Scored Coral Lvl 3</string>
+
+    <string name="attempted_coral_lvl4">Attempted Coral Lvl 4</string>
+    <string name="scored_coral_lvl4">Scored Coral Lvl 4</string>
+
+    <string name="attempted_algae">Attempted Algae</string>
+    <string name="scored_algae">Scored Algae</string>
+    <string name="removed_algae">Removed Algae</string>
+    <string name="number_tried">0</string>
+    <string name="counter_up">+</string>
+    <string name="counter_down">-</string>
+
+    <!--    tele op -->
+    <string name="header3">Teleop</string>
+
+    <string name="algae_processor_attempted">Attempted Processor</string>
+    <string name="algae_processor_scored">Scored Processor</string>
+
+    <string name="algae_barge_attempted">Attempted Barge</string>
+    <string name="algae_barge_scored">Scored Barge</string>
+
+    <string name="endgame_action">Did the team hang shallow or deep or park?</string>
+    <string name="hang_shallow">Hang Shallow</string>
+    <string name="hang_deep">Hang Deep</string>
+    <string name="park">Park</string>
+    <string name="nothing">None</string>
+
+    <string name="endgame_time">How much time they park with?</string>
+    <string name="twenty_five">25</string>
+    <string name="twenty">20</string>
+    <string name="fifteen">15</string>
+    <string name="ten">10</string>
+    <string name="five">5</string>
+
+    <string name="pieces_pickup">What pieces could the robot pickup?</string>
+    <string name="pickup_coral">Coral</string>/.
+    <string name="pickup_algae">Algae</string>
+
+    <!--    Post Match -->
+    <string name="header4">Post Match</string>
+
+    <string name="endText">Comments, questions, and concerns?</string>
+    <string name="typeHere">Type Here</string>
+
+    <string name="how_pick_ip_coral">How did the robot pick up the coral?</string>
+    <string name="floor_intake">Floor intake</string>
+    <string name="human_player_intake">Human player station</string>
+
+    <string name="robot_stopped">If the robot stopped why?</string>
+    <string name="e_stopped">E-stopped</string>
+    <string name="died">Died</string>
+    <string name="tipped">Tipped</string>
+    <string name="physically_broke">Physically Broke</string>
+    <string name="not_stopped">Not stopped</string>
+
+    <string name="ranking_of_team">Team rank in alliance? (Talk amongst yourselves)</string>
+    <string name="rank1">Rank 1</string>
+    <string name="rank2">Rank 2</string>
+    <string name="rank3">Rank 3</string>
+
+    <string name="defense_received_title">Defense received?</string>
+    <string name="no_defense">No Defense</string>
+    <string name="light_defense">Light Defense</string>
+    <string name="heavy_defense">Heavy Defense</string>
+
+    <string name="button_save">Save</string>
+
+    <!--  human player  -->
+    <string name="human_player_title">Human Player Page!</string>
+
+
+    <string name="attempted_barge">Attempted Barge</string>
+    <string name="scored_barge">Scored Barge</string>
+    <string name="thrown_back">Thrown Back into Field</string>
+
+    <string name="attempted">Att.</string>
+    <string name="scored">Scor.</string>
+    <string name="barge">Barge</string>
+    <string name="processor">Processor</string>
+
+    <string name="data">Data</string>
+
+</resources>

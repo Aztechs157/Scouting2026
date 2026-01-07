@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activityHumanScouting">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:showDividers="middle"
+            android:paddingTop="20dp"
+            android:paddingHorizontal="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/human_player_title"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:text="@string/prompt_scout_name"
+                    />
+                <EditText
+                    android:id="@+id/scout_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:autofillHints="username"
+                    android:gravity="center"
+                    android:inputType="textCapWords"
+                    android:hint="@string/text_edit_scout_name"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:text="@string/prompt_match_number"
+                    />
+                <EditText
+                    android:id="@+id/match_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:autofillHints="username"
+                    android:hint="@string/text_edit_match_number"
+                    android:gravity="center"
+                    android:inputType="number"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:text="@string/prompt_team_number"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/team_number"
+                    android:textSize="32sp"
+                    android:autofillHints="username"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:hint="@string/text_edit_team_number"/>
+            </LinearLayout>
+
+
+            <!--       thrown back into field -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintWidth_percent="0.5">
+
+                <Button
+                    android:id="@+id/thrown_count_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/counter_up"
+
+                    />
+
+                <Button
+                    android:id="@+id/thrown_count_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/counter_down"
+                    />
+
+                <TextView
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/thrown_back"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/edit_text_rc1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:hint="@string/number_tried"
+                    android:inputType="number"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+
+            <!--        attempted Barge -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintWidth_percent="0.5">
+
+                <Button
+                    android:id="@+id/attempted_barge_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/counter_up"
+
+                    />
+
+                <Button
+                    android:id="@+id/attempted_barge_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/counter_down"
+                    />
+
+                <TextView
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attempted_barge"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/edit_text_ac2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:hint="@string/number_tried"
+                    android:inputType="number"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+
+
+            <!--        Scored Barge -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintWidth_percent="0.5">
+
+                <Button
+                    android:id="@+id/scored_barge_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/counter_up"
+
+                    />
+
+                <Button
+                    android:id="@+id/scored_barge_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/counter_down"
+                    />
+
+                <TextView
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scored_barge"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/edit_text_rc2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:hint="@string/number_tried"
+                    android:inputType="number"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+<!--text-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="264dp"
+                android:layout_height="match_parent"
+                android:text="@string/endText"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

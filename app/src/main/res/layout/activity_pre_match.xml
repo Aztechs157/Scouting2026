@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activityAutonomous">
+<!--    TODO: Add coral counter-->
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:showDividers="middle"
+            android:paddingTop="20dp"
+            android:paddingHorizontal="20dp"
+            android:divider="@drawable/vertical_padding_small"
+            >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header1"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="@drawable/horizontal_padding_small"
+            android:showDividers="middle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="@string/prompt_scout_name"
+                />
+            <EditText
+                android:id="@+id/scout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:autofillHints="username"
+                android:gravity="center"
+                android:inputType="textCapWords"
+                android:hint="@string/text_edit_scout_name"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="@drawable/horizontal_padding_small"
+            android:showDividers="middle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="@string/prompt_match_number"
+                />
+            <EditText
+                android:id="@+id/match_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:autofillHints="username"
+                android:hint="@string/text_edit_match_number"
+                android:gravity="center"
+                android:inputType="number"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="@drawable/horizontal_padding_small"
+            android:showDividers="middle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="@string/prompt_team_number"
+            />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team_number"
+                android:textSize="32sp"
+                android:autofillHints="username"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint="@string/text_edit_team_number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="@drawable/horizontal_padding_small"
+            android:showDividers="middle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="@string/prompt_team_color"
+                />
+            <RadioGroup
+                android:id="@+id/team_color_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_small"
+                android:showDividers="middle" >
+                <RadioButton
+                    android:id="@+id/team_color_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="24sp"
+                    android:text="@string/color_red"/>
+                <RadioButton
+                    android:id="@+id/team_color_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="24sp"
+                    android:text="@string/color_blue"/>
+            </RadioGroup>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_preloaded_coral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/preloaded_coral"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp" />
+
+<!--            <CheckBox-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/checkBox_scouting_humanplayer"-->
+<!--                android:text="@string/scouting_human_player"/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:divider="@drawable/horizontal_padding_big"
+            android:showDividers="middle">
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:paddingVertical="8dp"
+                android:text="@string/button_back"/>
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:paddingVertical="8dp"
+
+                android:text="@string/button_next"/>
+        </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="60dp"/>
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

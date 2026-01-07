@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activityAfterMatch">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/header4"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:divider="@drawable/vertical_padding_small"
+        android:showDividers="middle"
+        android:paddingTop="20dp"
+        android:paddingHorizontal="20dp"
+        >
+
+<!--        what pieces can robot manipulate -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/how_pick_ip_coral"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/floor_intake"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/floor_intake" />
+
+            <CheckBox
+                android:id="@+id/human_player_intake"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/human_player_intake"
+                />
+        </LinearLayout>
+<!--        If they robot was stopped why? -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/robot_stopped"
+                android:textSize="24sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/why_robot_stopped"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:showDividers="middle" >
+
+                <RadioButton
+                    android:id="@+id/died"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/died"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/tipped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/tipped"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/robot_break"
+                    android:layout_width="134dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/physically_broke"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/e_stopped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="77dp"
+                    android:text="@string/e_stopped"
+                    android:textSize="20sp" />
+                <RadioButton
+                    android:id="@+id/never_stopped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/not_stopped"
+                    android:textSize="20sp"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <!--        defense received throughout the match -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/defense_received_title"
+                android:textSize="24sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/defense_received"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle" >
+
+                <RadioButton
+                    android:id="@+id/defense_none"
+                    android:layout_width="115dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/no_defense"
+                    android:textSize="22sp" />
+
+                <RadioButton
+                    android:id="@+id/defense_light"
+                    android:layout_width="137dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/light_defense"
+                    android:textSize="22sp" />
+                <RadioButton
+                    android:id="@+id/defense_heavy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="22sp"
+                    android:text="@string/heavy_defense"/>
+            </RadioGroup>
+        </LinearLayout>
+
+<!--ranking of the teams amoungst the scouting team-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/ranking_of_team"
+                android:textSize="24sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/ranking_of_teams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle" >
+
+                <RadioButton
+                    android:id="@+id/rank1"
+                    android:layout_width="115dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/rank1"
+                    android:textSize="22sp" />
+
+                <RadioButton
+                    android:id="@+id/rank2"
+                    android:layout_width="137dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/rank2"
+                    android:textSize="22sp" />
+                <RadioButton
+                    android:id="@+id/rank3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="22sp"
+                    android:text="@string/rank3"/>
+            </RadioGroup>
+        </LinearLayout>
+
+<!--        text box for typing input -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="264dp"
+        android:layout_height="match_parent"
+        android:text="@string/endText" />
+
+</LinearLayout>
+<!--        save button -->
+        <EditText
+            android:id="@+id/End_of_app_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="username"
+            android:hint="@string/typeHere"
+            android:inputType="textMultiLine"
+            android:labelFor="@string/endText"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:divider="@drawable/horizontal_padding_small"
+        android:showDividers="middle">
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:paddingVertical="8dp"
+                android:text="@string/button_back"/>
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:paddingVertical="8dp"
+                android:text="@string/button_save"/>
+    </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="80dp"/>
+    </LinearLayout>
+</ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
