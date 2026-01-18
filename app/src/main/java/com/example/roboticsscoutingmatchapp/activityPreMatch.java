@@ -61,7 +61,7 @@ public class activityPreMatch extends AppCompatActivity {
         EditText teamNumber = findViewById(R.id.team_number);
         RadioGroup teamColorRadioGroup = findViewById(R.id.team_color_radio_group);
         Button saveButton = findViewById(R.id.save_button);
-        CheckBox preloadedCoral = findViewById(R.id.checkBox_preloaded_coral);
+        CheckBox preloadedFuel = findViewById(R.id.checkBox_preloaded_fuel);
         Button backButton = findViewById(R.id.back_button);
         if(!scoutNameString.isEmpty()){
             scoutName.setText(scoutNameString);
@@ -83,7 +83,7 @@ public class activityPreMatch extends AppCompatActivity {
             preMatchSaveString = u.nextCommaOn(preMatchSaveString); // remove team color
             matchNumber.setText(u.untilNextComma(preMatchSaveString));
             preMatchSaveString = u.nextCommaOn(preMatchSaveString); // remove match number
-            preloadedCoral.setChecked(Boolean.parseBoolean(u.untilNextComma(preMatchSaveString)));
+            preloadedFuel.setChecked(Boolean.parseBoolean(u.untilNextComma(preMatchSaveString)));
             preMatchSaveString = u.nextCommaOn(preMatchSaveString); // Remove Checked
 
         }
@@ -116,7 +116,7 @@ public class activityPreMatch extends AppCompatActivity {
                 preMatchInfo += u.stripText(u.getData(teamNumber)) + ",";
                 preMatchInfo += u.stripText(u.getData(teamColorRadioGroup)) + ",";
                 preMatchInfo += u.stripText(u.getData(matchNumber)) + ",";
-                preMatchInfo += u.stripText(u.getData(preloadedCoral)) + ",";
+                preMatchInfo += u.stripText(u.getData(preloadedFuel)) + ",";
 
                 i.putExtra("preMatch", preMatchInfo);
                 i.putExtra("auto", autoSaveString);

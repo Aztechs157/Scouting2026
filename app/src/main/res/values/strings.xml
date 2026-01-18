@@ -75,6 +75,36 @@
     <string name="position5">Position 5</string>
     <string name="position6">Position 6</string>
 
+    <string name="scoring">Scoring</string>
+    <string name="passing">Passing</string>
+
+    <string name="auto_hang">Did the robot hang?</string>
+
+    <string name="shots_fired">Fuel Shot</string>
+    <string name="accurate_shots_fired">Accuracy%</string>
+    <string-array name="number_fuel_shot">
+        <item>1-10</item>
+        <item>11-20</item>
+        <item>21-30</item>
+        <item>31-40</item>
+        <item>41-50</item>
+        <item>51-60</item>
+        <item>60+</item>
+    </string-array>
+
+    <string-array name="percent_accurate">
+        <item>10%</item>
+        <item>20%</item>
+        <item>30%</item>
+        <item>40%</item>
+        <item>50%</item>
+        <item>60%</item>
+        <item>70%</item>
+        <item>80%</item>
+        <item>90%</item>
+        <item>100%</item>
+    </string-array>
+
     <string name="took_from_left">Taken from left human player station</string>
     <string name="took_from_right">Taken from left human player station</string>
 
@@ -82,6 +112,8 @@
     <string name="level2">L2</string>
     <string name="level3">L3</string>
     <string name="level4">L4</string>
+
+    <string name="cycle">Cycle</string>
 
     <string name="attempted_coral">Attempted Coral</string>
     <string name="scored_coral">Scored Coral</string>

@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"/>
 
             <CheckBox
-                android:id="@+id/checkBox_preloaded_coral"
+                android:id="@+id/checkBox_preloaded_fuel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/preloaded_fuel"
