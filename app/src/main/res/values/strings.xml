@@ -34,6 +34,7 @@
     <string name="comp_dcmp">District Championships</string>
     <string name="comp_worlds">Worlds</string>
     <string name="comp_test">Test</string>
+    <string name="comp_minuteman">Minuteman</string>
 
     <!--    Prematch  -->
     <string name="header1">Pre-Match</string>
@@ -56,7 +57,7 @@
     <string name="button_next">Next</string>
     <string name="button_back">Back</string>
 
-    <string name="preloaded_coral">Did they have a preloaded coral?</string>
+    <string name="preloaded_fuel">Do they have preloaded fuel?</string>
     <string name="scouting_human_player">Are you scouting the human player?</string>
     <!--Auto -->
     <string name="header2">Autonomous</string>
@@ -74,6 +75,36 @@
     <string name="position5">Position 5</string>
     <string name="position6">Position 6</string>
 
+    <string name="scoring">Scoring</string>
+    <string name="passing">Passing</string>
+
+    <string name="auto_hang">Did the robot hang?</string>
+
+    <string name="shots_fired">Fuel Shot</string>
+    <string name="accurate_shots_fired">Accuracy%</string>
+    <string-array name="number_fuel_shot">
+        <item>1-10</item>
+        <item>11-20</item>
+        <item>21-30</item>
+        <item>31-40</item>
+        <item>41-50</item>
+        <item>51-60</item>
+        <item>60+</item>
+    </string-array>
+
+    <string-array name="percent_accurate">
+        <item>10%</item>
+        <item>20%</item>
+        <item>30%</item>
+        <item>40%</item>
+        <item>50%</item>
+        <item>60%</item>
+        <item>70%</item>
+        <item>80%</item>
+        <item>90%</item>
+        <item>100%</item>
+    </string-array>
+
     <string name="took_from_left">Taken from left human player station</string>
     <string name="took_from_right">Taken from left human player station</string>
 
@@ -81,6 +112,8 @@
     <string name="level2">L2</string>
     <string name="level3">L3</string>
     <string name="level4">L4</string>
+
+    <string name="cycle">Cycle</string>
 
     <string name="attempted_coral">Attempted Coral</string>
     <string name="scored_coral">Scored Coral</string>
