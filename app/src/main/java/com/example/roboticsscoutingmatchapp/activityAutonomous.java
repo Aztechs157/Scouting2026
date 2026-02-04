@@ -3,6 +3,7 @@ package com.example.roboticsscoutingmatchapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -67,27 +68,32 @@ public class activityAutonomous extends AppCompatActivity {
         RadioButton position5Button = findViewById(R.id.position_5);
         RadioButton position6Button = findViewById(R.id.position_6);
 
-        RadioButton scoringCycleButton = findViewById(R.id.scoring);
-        RadioButton passingCycleButton = findViewById(R.id.passing);
+        Button FS1plus = findViewById(R.id.up_count_button_fs1);
+        Button FS5plus = findViewById(R.id.up_count_button_fs5);
+        Button FS10plus = findViewById(R.id.up_count_button_fs10);
+        Button FS15plus = findViewById(R.id.up_count_button_fs15);
+        Button FS20plus = findViewById(R.id.up_count_button_fs20);
 
-        Spinner spinner = (Spinner) findViewById(R.id.shots_fired_spinner);
+        Button FS1minus = findViewById(R.id.down_count_button_fs1);
+        Button FS5minus = findViewById(R.id.down_count_button_fs5);
+        Button FS10minus = findViewById(R.id.down_count_button_fs10);
+        Button FS15minus = findViewById(R.id.down_count_button_fs15);
+        Button FS20minus = findViewById(R.id.down_count_button_fs20);
+
+        EditText FSField = findViewById(R.id.edit_text_fs);
+
+        Spinner accuracyChoice = (Spinner) findViewById(R.id.accuracy_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.number_fuel_shot,
+                R.array.accuracy_estimate,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        Spinner spinner2 = (Spinner) findViewById(R.id.percent_accurate_spinner);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
-                this,
-                R.array.percent_accurate,
-                android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
+        accuracyChoice.setAdapter(adapter);
 
         Button backButton = findViewById(R.id.back_button);
         Button saveButton = findViewById(R.id.save_button);
+
+        CheckBox autoHang = findViewById(R.id.checkBox_auto_hang);
 
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
@@ -119,6 +125,8 @@ public class activityAutonomous extends AppCompatActivity {
                     position6Button.toggle();
                     break;
             }
+            FSField.setText(u.untilNextComma(autoSaveString));
+            autoSaveString = u.nextCommaOn(autoSaveString);
         }
 
 
@@ -126,6 +134,16 @@ public class activityAutonomous extends AppCompatActivity {
         positionGroup1.setOnCheckedChangeListener((l, w)->clearGroup(positionGroup2, positionGroup1));
         positionGroup2.setOnCheckedChangeListener((l, w)->clearGroup(positionGroup1, positionGroup2));
 
+        FS1plus.setOnClickListener((l)->u.incrementText(FSField));
+        FS1minus.setOnClickListener((l)->u.incrementText(FSField, -1));
+        FS5plus.setOnClickListener((l)->u.incrementText(FSField, +5));
+        FS5minus.setOnClickListener((l)->u.incrementText(FSField, -5));
+        FS10plus.setOnClickListener((l)->u.incrementText(FSField, +10));
+        FS10minus.setOnClickListener((l)->u.incrementText(FSField, -10));
+        FS15plus.setOnClickListener((l)->u.incrementText(FSField, +15));
+        FS15minus.setOnClickListener((l)->u.incrementText(FSField, -15));
+        FS20plus.setOnClickListener((l)->u.incrementText(FSField, +20));
+        FS20minus.setOnClickListener((l)->u.incrementText(FSField, -20));
         // Sets all the buttons to either increment or decrement their respective buttons.
         // Can be simplified. Not now.
 
@@ -143,6 +161,11 @@ public class activityAutonomous extends AppCompatActivity {
                 }
             }
             autoInfo += ","; // Starting position # end
+
+            autoInfo += u.getData(autoHang);
+
+            autoInfo += u.getData(FSField);
+            autoInfo += u.getData(accuracyChoice);
 
             Intent i = new Intent(this, activityPreMatch.class);
             i.putExtra("preMatch", preMatchSaveString);
@@ -170,6 +193,11 @@ public class activityAutonomous extends AppCompatActivity {
                     autoInfo += u.getData(positionGroup1);
                 }
                 autoInfo += ","; // Starting position # end
+
+                autoInfo += u.getData(autoHang);
+
+                autoInfo += u.getData(FSField);
+                autoInfo += u.getData(accuracyChoice);
 
                 Intent i = new Intent(this, activityTeleOp.class);
                 i.putExtra("preMatch", preMatchSaveString);

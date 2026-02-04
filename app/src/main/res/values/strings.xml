@@ -80,15 +80,17 @@
 
     <string name="auto_hang">Did the robot hang?</string>
 
+
+
     <string name="shots_fired">Fuel Shot</string>
     <string name="accurate_shots_fired">Accuracy%</string>
     <string-array name="number_fuel_shot">
-        <item>1-10</item>
-        <item>11-20</item>
-        <item>21-30</item>
-        <item>31-40</item>
-        <item>41-50</item>
-        <item>51-60</item>
+        <item>1–10</item>
+        <item>11–20</item>
+        <item>21–30</item>
+        <item>31–40</item>
+        <item>41–50</item>
+        <item>51–60</item>
         <item>60+</item>
     </string-array>
 
@@ -105,6 +107,13 @@
         <item>100%</item>
     </string-array>
 
+    <string-array name="accuracy_estimate">
+        <item>Very Inaccurate</item>
+        <item>Somewhat Inaccurate</item>
+        <item>Somewhat Accurate</item>
+        <item>Very Accurate</item>
+    </string-array>
+
     <string name="took_from_left">Taken from left human player station</string>
     <string name="took_from_right">Taken from left human player station</string>
 
@@ -113,7 +122,11 @@
     <string name="level3">L3</string>
     <string name="level4">L4</string>
 
-    <string name="cycle">Cycle</string>
+    <string name="Cycle1">Cycle 1</string>
+    <string name="Cycle2">Cycle 2</string>
+    <string name="Cycle3">Cycle 3</string>
+    <string name="Cycle4">Cycle 4</string>
+    <string name="Cycle5">Cycle 5</string>
 
     <string name="attempted_coral">Attempted Coral</string>
     <string name="scored_coral">Scored Coral</string>
@@ -137,6 +150,12 @@
     <string name="number_tried">0</string>
     <string name="counter_up">+</string>
     <string name="counter_down">-</string>
+
+    <string name="number1">1</string>
+    <string name="number5">5</string>
+    <string name="number10">10</string>
+    <string name="number15">15</string>
+    <string name="number20">20</string>
 
     <!--    tele op -->
     <string name="header3">Teleop</string>
@@ -192,6 +211,7 @@
     <string name="heavy_defense">Heavy Defense</string>
 
     <string name="button_save">Save</string>
+    <string name="button_save_cycle">Save Cycle</string>
 
     <!--  human player  -->
     <string name="human_player_title">Human Player Page!</string>

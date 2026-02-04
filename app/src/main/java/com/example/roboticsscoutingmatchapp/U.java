@@ -6,6 +6,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -234,5 +235,9 @@ public class U extends AppCompatActivity{
             i++;
         }
         return -1;
+    }
+
+    public String getData(Spinner choice) {
+        return choice.toString();
     }
 }

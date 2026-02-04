@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="@string/cycle"/>
+                android:text="@string/shots_fired"/>
 
             <!-- Attempted Coral L1 and L2 -->
             <LinearLayout
@@ -147,70 +147,21 @@
                 android:orientation="horizontal"
                 android:divider="@drawable/horizontal_padding_big"
                 android:showDividers="middle">
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <EditText
+                    android:id="@+id/edit_text_fs"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintWidth_percent="0.5"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle">
-                    <RadioButton
-                        android:id="@+id/scoring"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/scoring" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintWidth_percent="0.5"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle">
-                    <RadioButton
-                        android:id="@+id/passing"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/passing" />
-                </LinearLayout>
-            </LinearLayout>
-            <!-- Attempted Coral L3 and L4 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:divider="@drawable/horizontal_padding_big"
-                android:showDividers="middle">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintWidth_percent="0.5"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        android:text="@string/shots_fired"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintWidth_percent="0.5"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        android:text="@string/accurate_shots_fired"
-                        />
-                </LinearLayout>
+                    android:autofillHints="username"
+                    android:hint="@string/number_tried"
+                    android:inputType="number"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp" />
+                <Spinner
+                    android:id="@+id/accuracy_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -219,32 +170,132 @@
                 android:orientation="horizontal"
                 android:divider="@drawable/horizontal_padding_big"
                 android:showDividers="middle">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintWidth_percent="0.5"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle">
-                    <Spinner
-                        android:id="@+id/shots_fired_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintWidth_percent="0.5"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle">
-                    <Spinner
-                        android:id="@+id/percent_accurate_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
+                <Button
+                    android:id="@+id/up_count_button_fs1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fs5"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fs10"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fs15"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fs20"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_big"
+                android:showDividers="middle">
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number1"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number5"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number10"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number15"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number20"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_big"
+                android:showDividers="middle">
+                <Button
+                    android:id="@+id/down_count_button_fs1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fs5"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fs10"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fs15"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fs20"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
             </LinearLayout>
 
             <View
@@ -253,7 +304,7 @@
                 android:background="@color/black"/>
 
             <CheckBox
-                android:id="@+id/checkBox_preloaded_fuel"
+                android:id="@+id/checkBox_auto_hang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/auto_hang"
@@ -263,7 +314,7 @@
 
 <!--        attempted algae counter -->
 
-        <!--        save buttons (hahahaha but) -->
+        <!--        save buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
