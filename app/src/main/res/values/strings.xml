@@ -166,13 +166,14 @@
     <string name="algae_barge_attempted">Attempted Barge</string>
     <string name="algae_barge_scored">Scored Barge</string>
 
-    <string name="endgame_action">Did the team hang shallow or deep or park?</string>
-    <string name="hang_shallow">Hang Shallow</string>
-    <string name="hang_deep">Hang Deep</string>
+    <string name="endgame_action">Climb Status?</string>
+    <string name="level1_climb">Level 1</string>
+    <string name="level2_climb">Level 2</string>
+    <string name="level3_climb">Level 3</string>
     <string name="park">Park</string>
     <string name="nothing">None</string>
 
-    <string name="endgame_time">How much time they park with?</string>
+    <string name="endgame_time">How much time did they park with?</string>
     <string name="twenty_five">25</string>
     <string name="twenty">20</string>
     <string name="fifteen">15</string>
@@ -182,6 +183,13 @@
     <string name="pieces_pickup">What pieces could the robot pickup?</string>
     <string name="pickup_coral">Coral</string>/.
     <string name="pickup_algae">Algae</string>
+
+    <string name="pac_manning">When moving</string>
+    <string name="stand_still">When unmoving</string>
+    <string name="no_difference">About the same</string>
+    <string name="bad_accuracy">Consistently bad accuracy</string>
+
+    <string name="best_accuracy">When did the robot have the best accuracy?</string>
 
     <!--    Post Match -->
     <string name="header4">Post Match</string>
