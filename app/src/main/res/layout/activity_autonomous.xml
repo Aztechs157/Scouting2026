@@ -40,7 +40,7 @@
             android:id="@+id/imageView"
             android:layout_width="401dp"
             android:layout_height="159dp"
-            app:srcCompat="@drawable/rebuilt_starting_positions" />
+            app:srcCompat="@drawable/rebuilt_starting_positions_better" />
 
         <LinearLayout
             android:layout_width="372dp"
@@ -84,34 +84,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/position3" />
 
-            </RadioGroup>
-
-            <RadioGroup
-                android:id="@+id/staring_position_radio_group2"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:divider="@drawable/vertical_padding_small"
-                android:showDividers="middle">
-
-            <RadioButton
-                android:id="@+id/position_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/position4" />
-
-            <RadioButton
-                android:id="@+id/position_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/position5" />
-
-            <RadioButton
-                android:id="@+id/position_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/position6" />
             </RadioGroup>
         </LinearLayout>
 
@@ -290,6 +262,173 @@
                     />
                 <Button
                     android:id="@+id/down_count_button_fs20"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="@string/passing"/>
+
+            <!-- Scored L1 and L2 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_big"
+                android:showDividers="middle">
+
+                <EditText
+                    android:id="@+id/edit_text_fp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:hint="@string/number_tried"
+                    android:inputType="number"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_big"
+                android:showDividers="middle">
+                <Button
+                    android:id="@+id/up_count_button_fp1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fp5"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fp10"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fp15"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+                <Button
+                    android:id="@+id/up_count_button_fp20"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_up"
+                    />
+            </LinearLayout>
+
+            <!-- Scored L3 and L4 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_big"
+                android:showDividers="middle">
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number1"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number5"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number10"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number15"/>
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:text="@string/number20"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/horizontal_padding_big"
+                android:showDividers="middle">
+                <Button
+                    android:id="@+id/down_count_button_fp1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fp5"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fp10"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fp15"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp"
+                    android:text="@string/counter_down"
+                    />
+                <Button
+                    android:id="@+id/down_count_button_fp20"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:insetTop="2dp"

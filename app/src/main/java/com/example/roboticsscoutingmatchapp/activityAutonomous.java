@@ -60,13 +60,9 @@ public class activityAutonomous extends AppCompatActivity {
         });
 
         RadioGroup positionGroup1 = findViewById(R.id.staring_position_radio_group1);
-        RadioGroup positionGroup2 = findViewById(R.id.staring_position_radio_group2);
         RadioButton position1Button = findViewById(R.id.Position_1);
         RadioButton position2Button = findViewById(R.id.Position_2);
         RadioButton position3Button = findViewById(R.id.Position_3);
-        RadioButton position4Button = findViewById(R.id.position_4);
-        RadioButton position5Button = findViewById(R.id.position_5);
-        RadioButton position6Button = findViewById(R.id.position_6);
 
         Button FS1plus = findViewById(R.id.up_count_button_fs1);
         Button FS5plus = findViewById(R.id.up_count_button_fs5);
@@ -115,24 +111,10 @@ public class activityAutonomous extends AppCompatActivity {
                 case "Position 3":
                     position3Button.toggle();
                     break;
-                case "Position 4":
-                    position4Button.toggle();
-                    break;
-                case "Position 5":
-                    position5Button.toggle();
-                    break;
-                case "Position 6":
-                    position6Button.toggle();
-                    break;
             }
             FSField.setText(u.untilNextComma(autoSaveString));
             autoSaveString = u.nextCommaOn(autoSaveString);
         }
-
-
-
-        positionGroup1.setOnCheckedChangeListener((l, w)->clearGroup(positionGroup2, positionGroup1));
-        positionGroup2.setOnCheckedChangeListener((l, w)->clearGroup(positionGroup1, positionGroup2));
 
         FS1plus.setOnClickListener((l)->u.incrementText(FSField));
         FS1minus.setOnClickListener((l)->u.incrementText(FSField, -1));
@@ -152,14 +134,6 @@ public class activityAutonomous extends AppCompatActivity {
             // #SCL1 | #SCL2 | #SCL3 | #SCL4 | #Barge attempted | #barge scored | 
             // #processor attempted | #processor scored |#algae removed ||
             String autoInfo = "";
-
-            if (!u.getData(positionGroup1).isEmpty() || !u.getData(positionGroup2).isEmpty()) {
-                if (u.getData(positionGroup1).isEmpty()) {
-                    autoInfo += u.getData(positionGroup2);
-                } else {
-                    autoInfo += u.getData(positionGroup1);
-                }
-            }
             autoInfo += ","; // Starting position # end
 
             autoInfo += u.getData(autoHang);
@@ -180,18 +154,11 @@ public class activityAutonomous extends AppCompatActivity {
             String response = "";
 
 
-            if((u.getData(positionGroup1).isEmpty()) && (u.getData(positionGroup2).isEmpty()))
+            if((u.getData(positionGroup1).isEmpty()))
                 response = "Please fill position";
             else{
 
                 String autoInfo = "";
-
-
-                if (u.getData(positionGroup1).isEmpty()) {
-                    autoInfo += u.getData(positionGroup2);
-                } else {
-                    autoInfo += u.getData(positionGroup1);
-                }
                 autoInfo += ","; // Starting position # end
 
                 autoInfo += u.getData(autoHang);

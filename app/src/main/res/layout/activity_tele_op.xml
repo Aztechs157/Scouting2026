@@ -400,6 +400,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/endgame_action"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
@@ -458,6 +459,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/endgame_time"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
@@ -524,6 +526,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/best_accuracy"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
             </LinearLayout>

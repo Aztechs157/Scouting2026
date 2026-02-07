@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
                 android:text="@string/prompt_scout_name"
+                android:textColor="@color/black"
                 />
             <EditText
                 android:id="@+id/scout_name"
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
                 android:text="@string/prompt_match_number"
+                android:textColor="@color/black"
                 />
             <EditText
                 android:id="@+id/match_number"
@@ -98,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
                 android:text="@string/prompt_team_number"
+                android:textColor="@color/black"
             />
             <EditText
                 android:layout_width="match_parent"
@@ -122,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="32sp"
                 android:text="@string/prompt_team_color"
+                android:textColor="@color/black"
                 />
             <RadioGroup
                 android:id="@+id/team_color_radio_group"

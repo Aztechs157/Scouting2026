@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
                 android:text="@string/competition_header"
+                android:textColor="@color/black"
                 android:gravity="center"/>
             <RadioGroup
                 android:id="@+id/competition_radio_group"
