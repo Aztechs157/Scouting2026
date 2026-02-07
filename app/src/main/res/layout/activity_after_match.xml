@@ -47,7 +47,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/how_pick_ip_coral"
+                android:text="@string/field_navigation"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -57,16 +57,16 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/floor_intake"
+                android:id="@+id/over_bump"
                 android:layout_width="138dp"
                 android:layout_height="match_parent"
-                android:text="@string/floor_intake" />
+                android:text="@string/bump"/>
 
             <CheckBox
-                android:id="@+id/human_player_intake"
+                android:id="@+id/under_trench"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/human_player_intake"
+                android:text="@string/trench"
                 />
         </LinearLayout>
 <!--        If they robot was stopped why? -->

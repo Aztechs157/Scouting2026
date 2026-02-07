@@ -197,6 +197,10 @@
     <string name="endText">Comments, questions, and concerns?</string>
     <string name="typeHere">Type Here</string>
 
+    <string name="field_navigation">How did the robot navigate the field?</string>
+    <string name="bump">Over the bump</string>
+    <string name="trench">Through the trench</string>
+
     <string name="how_pick_ip_coral">How did the robot pick up the coral?</string>
     <string name="floor_intake">Floor intake</string>
     <string name="human_player_intake">Human player station</string>
