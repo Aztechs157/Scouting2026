@@ -76,7 +76,20 @@ public class activityAutonomous extends AppCompatActivity {
         Button FS15minus = findViewById(R.id.down_count_button_fs15);
         Button FS20minus = findViewById(R.id.down_count_button_fs20);
 
+        Button FP1plus = findViewById(R.id.up_count_button_fp1);
+        Button FP5plus = findViewById(R.id.up_count_button_fp5);
+        Button FP10plus = findViewById(R.id.up_count_button_fp10);
+        Button FP15plus = findViewById(R.id.up_count_button_fp15);
+        Button FP20plus = findViewById(R.id.up_count_button_fp20);
+
+        Button FP1minus = findViewById(R.id.down_count_button_fp1);
+        Button FP5minus = findViewById(R.id.down_count_button_fp5);
+        Button FP10minus = findViewById(R.id.down_count_button_fp10);
+        Button FP15minus = findViewById(R.id.down_count_button_fp15);
+        Button FP20minus = findViewById(R.id.down_count_button_fp20);
+
         EditText FSField = findViewById(R.id.edit_text_fs);
+        EditText FPField = findViewById(R.id.edit_text_fp);
 
         Spinner accuracyChoice = (Spinner) findViewById(R.id.accuracy_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -126,6 +139,17 @@ public class activityAutonomous extends AppCompatActivity {
         FS15minus.setOnClickListener((l)->u.incrementText(FSField, -15));
         FS20plus.setOnClickListener((l)->u.incrementText(FSField, +20));
         FS20minus.setOnClickListener((l)->u.incrementText(FSField, -20));
+
+        FP1plus.setOnClickListener((l)->u.incrementText(FPField));
+        FP1minus.setOnClickListener((l)->u.incrementText(FPField, -1));
+        FP5plus.setOnClickListener((l)->u.incrementText(FPField, +5));
+        FP5minus.setOnClickListener((l)->u.incrementText(FPField, -5));
+        FP10plus.setOnClickListener((l)->u.incrementText(FPField, +10));
+        FP10minus.setOnClickListener((l)->u.incrementText(FPField, -10));
+        FP15plus.setOnClickListener((l)->u.incrementText(FPField, +15));
+        FP15minus.setOnClickListener((l)->u.incrementText(FPField, -15));
+        FP20plus.setOnClickListener((l)->u.incrementText(FPField, +20));
+        FP20minus.setOnClickListener((l)->u.incrementText(FPField, -20));
         // Sets all the buttons to either increment or decrement their respective buttons.
         // Can be simplified. Not now.
 
@@ -139,6 +163,7 @@ public class activityAutonomous extends AppCompatActivity {
             autoInfo += u.getData(autoHang);
 
             autoInfo += u.getData(FSField);
+            autoInfo += u.getData(FPField);
             autoInfo += u.getData(accuracyChoice);
 
             Intent i = new Intent(this, activityPreMatch.class);
@@ -164,6 +189,7 @@ public class activityAutonomous extends AppCompatActivity {
                 autoInfo += u.getData(autoHang);
 
                 autoInfo += u.getData(FSField);
+                autoInfo += u.getData(FPField);
                 autoInfo += u.getData(accuracyChoice);
 
                 Intent i = new Intent(this, activityTeleOp.class);
