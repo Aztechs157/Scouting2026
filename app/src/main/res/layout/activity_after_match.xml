@@ -70,6 +70,53 @@
                 android:text="@string/trench"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/hub_inactive"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/played_defense"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/played_defense"/>
+            <CheckBox
+                android:id="@+id/collected_fuel"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/collected_fuel"/>
+            <CheckBox
+                android:id="@+id/passed_fuel"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/passed_fuel"/>
+            <CheckBox
+                android:id="@+id/inactive"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/inactive"/>
+            <CheckBox
+                android:id="@+id/other"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/other"/>
+
+        </LinearLayout>
 <!--        If they robot was stopped why? -->
         <LinearLayout
             android:layout_width="match_parent"

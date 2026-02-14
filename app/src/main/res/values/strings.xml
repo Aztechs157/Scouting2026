@@ -205,6 +205,13 @@
     <string name="floor_intake">Floor intake</string>
     <string name="human_player_intake">Human player station</string>
 
+    <string name="hub_inactive">What did the robot do while its hub was inactive?</string>
+    <string name="played_defense">Played Defense</string>
+    <string name="passed_fuel">Passed Fuel</string>
+    <string name="collected_fuel">Collected Fuel</string>
+    <string name="inactive">Nothing</string>
+    <string name="other">Other (specify in comments)</string>
+
     <string name="robot_stopped">If the robot stopped why?</string>
     <string name="e_stopped">E-stopped</string>
     <string name="died">Died</string>
