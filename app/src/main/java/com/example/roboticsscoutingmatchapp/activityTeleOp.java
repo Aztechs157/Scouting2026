@@ -91,7 +91,6 @@ public class activityTeleOp extends AppCompatActivity {
         RadioButton level1Button = findViewById(R.id.level1_climb);
         RadioButton level2Button = findViewById(R.id.level2_climb);
         RadioButton level3Button = findViewById(R.id.level3_climb);
-        RadioButton parkButton = findViewById(R.id.park);
 
         RadioGroup accuracyRadioGroup = findViewById(R.id.accuracy_position); // Endgame RadioGroup
         RadioButton pacManButton = findViewById(R.id.pac_manning);
@@ -131,9 +130,6 @@ public class activityTeleOp extends AppCompatActivity {
                     break;
                 case "Level 3":
                     level3Button.toggle();
-                    break;
-                case "Park":
-                    parkButton.toggle();
                     break;
                 case "None":
                     noneButton.toggle();

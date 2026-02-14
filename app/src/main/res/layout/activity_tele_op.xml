@@ -434,12 +434,6 @@
                         android:text="@string/level3_climb"
                         android:textSize="22sp" />
                     <RadioButton
-                        android:id="@+id/park"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="22sp"
-                        android:text="@string/park"/>
-                    <RadioButton
                         android:id="@+id/nothing"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
