@@ -212,6 +212,8 @@ public class activityTeleOp extends AppCompatActivity {
             // Park/Shallow/Deep | Time to hang | Algae Pickup | Coral Pickup ||
 
             teleOpInfo += u.getData(FSField) + ",";
+            teleOpInfo += u.getData(accuracyChoice) + ",";
+
             teleOpInfo += u.getData(FPField) + ",";
 
             teleOpInfo += u.getData(parkRadioGroup) + ",";
@@ -241,6 +243,8 @@ public class activityTeleOp extends AppCompatActivity {
                 String teleOpInfo = "";
 
                 teleOpInfo += u.getData(FSField) + ",";
+                teleOpInfo += u.getData(accuracyChoice) + ",";
+
                 teleOpInfo += u.getData(FPField) + ",";
 
                 teleOpInfo += u.getData(parkRadioGroup) + ",";

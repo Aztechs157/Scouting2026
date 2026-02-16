@@ -159,13 +159,14 @@ public class activityAutonomous extends AppCompatActivity {
             // #processor attempted | #processor scored |#algae removed ||
             String autoInfo = "";
             autoInfo += ","; // Starting position # end
-
-            autoInfo += u.getData(autoHang);
+            autoInfo += u.getData(positionGroup1);
 
             autoInfo += u.getData(FSField);
-            autoInfo += u.getData(FPField);
             autoInfo += u.getData(accuracyChoice);
 
+            autoInfo += u.getData(FPField);
+
+            autoInfo += u.getData(autoHang);
             Intent i = new Intent(this, activityPreMatch.class);
             i.putExtra("preMatch", preMatchSaveString);
             i.putExtra("auto", autoInfo);
@@ -186,11 +187,14 @@ public class activityAutonomous extends AppCompatActivity {
                 String autoInfo = "";
                 autoInfo += ","; // Starting position # end
 
-                autoInfo += u.getData(autoHang);
+                autoInfo += u.getData(positionGroup1) + ",";
 
-                autoInfo += u.getData(FSField);
-                autoInfo += u.getData(FPField);
-                autoInfo += u.getData(accuracyChoice);
+                autoInfo += u.getData(FSField) + ",";
+                autoInfo += u.getData(accuracyChoice) + ",";
+
+                autoInfo += u.getData(FPField) + ",";
+
+                autoInfo += u.getData(autoHang) + ",";
 
                 Intent i = new Intent(this, activityTeleOp.class);
                 i.putExtra("preMatch", preMatchSaveString);
