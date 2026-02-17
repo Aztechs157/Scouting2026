@@ -2,13 +2,10 @@ package com.example.roboticsscoutingmatchapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -65,13 +62,12 @@ public class activityTeleOp extends AppCompatActivity {
         Button FS15minus = findViewById(R.id.down_count_button_fs15);
         Button FS20minus = findViewById(R.id.down_count_button_fs20);
 
-        Spinner accuracyChoice = (Spinner) findViewById(R.id.accuracy_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.accuracy_estimate,
-                android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        accuracyChoice.setAdapter(adapter);
+        RadioGroup accuracyGroup = findViewById(R.id.accuracy_radio_group);
+        RadioButton lessThanTen = findViewById(R.id.underTen);
+        RadioButton twentyFivePercent = findViewById(R.id.twentyFivePercent);
+        RadioButton fiftyPercent = findViewById(R.id.fiftyPercent);
+        RadioButton seventyFivePercent = findViewById(R.id.seventyFivePercent);
+        RadioButton overNinetyFive = findViewById(R.id.overNinetyFive);
 
         EditText FPField = findViewById(R.id.edit_text_fp);
 
@@ -158,6 +154,7 @@ public class activityTeleOp extends AppCompatActivity {
                     zeroButton.toggle();
                     break;
             }
+            teleOpSaveString = u.nextCommaOn(teleOpSaveString);
 
             String accuracyPosition = u.untilNextComma(teleOpSaveString);
             switch(accuracyPosition){
@@ -172,6 +169,26 @@ public class activityTeleOp extends AppCompatActivity {
                     break;
                 case "Consistently bad accuracy":
                     badAccuracyButton.toggle();
+                    break;
+            }
+            teleOpSaveString = u.nextCommaOn(teleOpSaveString);
+
+            String accuracyChoice = u.untilNextComma(teleOpSaveString);
+            switch(accuracyChoice){
+                case "Less Than 10%":
+                    lessThanTen.toggle();
+                    break;
+                case "25%":
+                    twentyFivePercent.toggle();
+                    break;
+                case "50%":
+                    fiftyPercent.toggle();
+                    break;
+                case "75%":
+                    seventyFivePercent.toggle();
+                    break;
+                case "More Than 95%":
+                    overNinetyFive.toggle();
                     break;
             }
 
@@ -212,7 +229,7 @@ public class activityTeleOp extends AppCompatActivity {
             // Park/Shallow/Deep | Time to hang | Algae Pickup | Coral Pickup ||
 
             teleOpInfo += u.getData(FSField) + ",";
-            teleOpInfo += u.getData(accuracyChoice) + ",";
+            teleOpInfo += u.getData(accuracyGroup) + ",";
 
             teleOpInfo += u.getData(FPField) + ",";
 
@@ -235,6 +252,10 @@ public class activityTeleOp extends AppCompatActivity {
                 FSField.setText("0");
             if(u.getData(FPField).isEmpty())
                 FPField.setText("0");
+            if ((u.getData(accuracyGroup).isEmpty()))
+                response = "Please give accuracy";
+            if ((u.getData(accuracyRadioGroup).isEmpty()))
+                response = "Please give accuracy position";
             if(u.getData(parkRadioGroup).isEmpty())
                 response = "Please select an endgame position";
             else if(u.getData(endgameTimeGroup).isEmpty())
@@ -243,7 +264,7 @@ public class activityTeleOp extends AppCompatActivity {
                 String teleOpInfo = "";
 
                 teleOpInfo += u.getData(FSField) + ",";
-                teleOpInfo += u.getData(accuracyChoice) + ",";
+                teleOpInfo += u.getData(accuracyGroup) + ",";
 
                 teleOpInfo += u.getData(FPField) + ",";
 

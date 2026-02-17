@@ -80,10 +80,19 @@
 
     <string name="auto_hang">Did the robot hang?</string>
 
+    <string name="not_accurate">Very Inaccurate</string>
+    <string name="less_accurate">Somewhat Inaccurate</string>
+    <string name="kinda_accurate">Somewhat Accurate</string>
+    <string name="very_accurate">Very Accurate</string>
 
+    <string name="less_than_ten">Less Than 10%</string>
+    <string name="twentyfive_percent">25%</string>
+    <string name="fifty_percent">50%</string>
+    <string name="seventyfive_percent">75%</string>
+    <string name="over_ninetyfive">More than 95%</string>
 
     <string name="shots_fired">Fuel Shot</string>
-    <string name="accurate_shots_fired">Accuracy%</string>
+    <string name="accurate_shots_fired">Accuracy</string>
     <string-array name="number_fuel_shot">
         <item>1–10</item>
         <item>11–20</item>

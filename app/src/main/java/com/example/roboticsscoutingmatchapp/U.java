@@ -2,6 +2,7 @@ package com.example.roboticsscoutingmatchapp;
 
 
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -154,7 +155,6 @@ public class U extends AppCompatActivity{
         if(commaNum <= 1){ return text.substring(text.indexOf(",")+1);}
         else{return nextCommaOn(text.substring(text.indexOf(",")+1), commaNum-1);}
     }
-
     /**
      * Returns a copy of {@code text} from the beginning of {@code text} to the next comma.</br>
      * Pre-Condition: {@code text} must contain at least one comma.
@@ -237,7 +237,7 @@ public class U extends AppCompatActivity{
         return -1;
     }
 
-    public String getData(Spinner choice) {
-        return choice.toString();
+    public String getSelectedItem(View options) {
+        return options.toString();
     }
 }

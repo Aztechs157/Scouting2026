@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,7 +28,15 @@ public class activityAutonomous extends AppCompatActivity {
         field1.setOnCheckedChangeListener((l,w)->clearGroup(field2, field1));
     }
 
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item is selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos).
+    }
 
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback.
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +100,12 @@ public class activityAutonomous extends AppCompatActivity {
         EditText FSField = findViewById(R.id.edit_text_fs);
         EditText FPField = findViewById(R.id.edit_text_fp);
 
-        Spinner accuracyChoice = (Spinner) findViewById(R.id.accuracy_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.accuracy_estimate,
-                android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        accuracyChoice.setAdapter(adapter);
+        RadioGroup accuracyGroup = findViewById(R.id.accuracy_radio_group);
+        RadioButton lessThanTen = findViewById(R.id.underTen);
+        RadioButton twentyFivePercent = findViewById(R.id.twentyFivePercent);
+        RadioButton fiftyPercent = findViewById(R.id.fiftyPercent);
+        RadioButton seventyFivePercent = findViewById(R.id.seventyFivePercent);
+        RadioButton overNinetyFive = findViewById(R.id.overNinetyFive);
 
         Button backButton = findViewById(R.id.back_button);
         Button saveButton = findViewById(R.id.save_button);
@@ -125,6 +133,28 @@ public class activityAutonomous extends AppCompatActivity {
                     position3Button.toggle();
                     break;
             }
+            autoSaveString = u.nextCommaOn(autoSaveString);
+
+            String accuracyChoice = u.untilNextComma(teleOpSaveString);
+            switch(accuracyChoice){
+                case "Less Than 10%":
+                    lessThanTen.toggle();
+                    break;
+                case "25%":
+                    twentyFivePercent.toggle();
+                    break;
+                case "50%":
+                    fiftyPercent.toggle();
+                    break;
+                case "75%":
+                    seventyFivePercent.toggle();
+                    break;
+                case "More Than 95%":
+                    overNinetyFive.toggle();
+                    break;
+            }
+            autoSaveString = u.nextCommaOn(autoSaveString);
+
             FSField.setText(u.untilNextComma(autoSaveString));
             autoSaveString = u.nextCommaOn(autoSaveString);
         }
@@ -158,11 +188,11 @@ public class activityAutonomous extends AppCompatActivity {
             // #SCL1 | #SCL2 | #SCL3 | #SCL4 | #Barge attempted | #barge scored | 
             // #processor attempted | #processor scored |#algae removed ||
             String autoInfo = "";
-            autoInfo += ","; // Starting position # end
+            // Starting position # end
             autoInfo += u.getData(positionGroup1);
 
             autoInfo += u.getData(FSField);
-            autoInfo += u.getData(accuracyChoice);
+            autoInfo += u.getData(accuracyGroup);
 
             autoInfo += u.getData(FPField);
 
@@ -182,15 +212,17 @@ public class activityAutonomous extends AppCompatActivity {
 
             if((u.getData(positionGroup1).isEmpty()))
                 response = "Please fill position";
+            if ((u.getData(accuracyGroup).isEmpty()))
+                response = "Please give accuracy";
             else{
 
                 String autoInfo = "";
-                autoInfo += ","; // Starting position # end
+                 // Starting position # end
 
                 autoInfo += u.getData(positionGroup1) + ",";
 
                 autoInfo += u.getData(FSField) + ",";
-                autoInfo += u.getData(accuracyChoice) + ",";
+                autoInfo += u.getData(accuracyGroup) + ",";
 
                 autoInfo += u.getData(FPField) + ",";
 

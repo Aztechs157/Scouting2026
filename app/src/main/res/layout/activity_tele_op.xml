@@ -62,10 +62,64 @@
                         android:inputType="number"
                         android:minWidth="48dp"
                         android:minHeight="48dp" />
-                    <Spinner
-                        android:id="@+id/accuracy_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/horizontal_padding_big"
+                    android:showDividers="middle">
+                    <RadioGroup
+                        android:id="@+id/accuracy_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:divider="@drawable/vertical_padding_small"
+                        android:showDividers="middle">
+                        <RadioButton
+                            android:id="@+id/underTen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/less_than_ten"
+                            android:maxWidth="100dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/twentyFivePercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/twentyfive_percent"
+                            android:maxWidth="90dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/fiftyPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fifty_percent"
+                            android:maxWidth="90dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/seventyFivePercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/seventyfive_percent"
+                            android:maxWidth="100dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/overNinetyFive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/over_ninetyfive"
+                            android:maxWidth="100dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                    </RadioGroup>
+
                 </LinearLayout>
 
                 <LinearLayout
