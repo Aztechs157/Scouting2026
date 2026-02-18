@@ -60,8 +60,8 @@ public class activityPreMatch extends AppCompatActivity {
         EditText matchNumber = findViewById(R.id.match_number);
         EditText teamNumber = findViewById(R.id.team_number);
         RadioGroup teamColorRadioGroup = findViewById(R.id.team_color_radio_group);
-        Button saveButton = findViewById(R.id.save_button);
         CheckBox preloadedFuel = findViewById(R.id.checkBox_preloaded_fuel);
+        Button saveButton = findViewById(R.id.save_button);
         Button backButton = findViewById(R.id.back_button);
         if(!scoutNameString.isEmpty()){
             scoutName.setText(scoutNameString);
@@ -114,8 +114,8 @@ public class activityPreMatch extends AppCompatActivity {
                 preMatchInfo += u.DATA_VERSION + ",";
                 preMatchInfo += u.stripText(u.getData(scoutName), u.DELIMITER_AND_WHITESPACE) + ",";
                 preMatchInfo += u.stripText(u.getData(teamNumber)) + ",";
-                preMatchInfo += u.stripText(u.getData(teamColorRadioGroup)) + ",";
                 preMatchInfo += u.stripText(u.getData(matchNumber)) + ",";
+                preMatchInfo += u.stripText(u.getData(teamColorRadioGroup)) + ",";
                 preMatchInfo += u.stripText(u.getData(preloadedFuel)) + ",";
 
                 i.putExtra("preMatch", preMatchInfo);

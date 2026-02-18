@@ -28,15 +28,6 @@ public class activityAutonomous extends AppCompatActivity {
         field1.setOnCheckedChangeListener((l,w)->clearGroup(field2, field1));
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item is selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos).
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback.
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +108,7 @@ public class activityAutonomous extends AppCompatActivity {
 
 
         if(!autoSaveString.isEmpty()){
-            // Starting Position | Left starting Position | #ACL1 | #ACL2 | #ACL3 | #ACL4 |
-            // #SCL1 | #SCL2 | #SCL3 | #SCL4 | #Barge attempted | #barge scored |
-            // #processor attempted | #processor scored |#algae removed ||
+            // Starting Position | #Shots Fired | Accuracy % | #Fuel Passed | Auto Hang |
             String position = u.untilNextComma(autoSaveString);
 //            Log.d(position, position);
             switch (position){
@@ -181,14 +170,10 @@ public class activityAutonomous extends AppCompatActivity {
         FP20plus.setOnClickListener((l)->u.incrementText(FPField, +20));
         FP20minus.setOnClickListener((l)->u.incrementText(FPField, -20));
         // Sets all the buttons to either increment or decrement their respective buttons.
-        // Can be simplified. Not now.
 
         backButton.setOnClickListener((l)-> {
-            // Starting Position | Left starting Position | #ACL1 | #ACL2 | #ACL3 | #ACL4 |
-            // #SCL1 | #SCL2 | #SCL3 | #SCL4 | #Barge attempted | #barge scored | 
-            // #processor attempted | #processor scored |#algae removed ||
+            // Starting Position | #Shots Fired | Accuracy % | #Fuel Passed | Auto Hang |
             String autoInfo = "";
-            // Starting position # end
             autoInfo += u.getData(positionGroup1);
 
             autoInfo += u.getData(FSField);
@@ -217,7 +202,6 @@ public class activityAutonomous extends AppCompatActivity {
             else{
 
                 String autoInfo = "";
-                 // Starting position # end
 
                 autoInfo += u.getData(positionGroup1) + ",";
 

@@ -86,8 +86,6 @@ public class activityAfterMatch extends AppCompatActivity {
         }
 
         if(!postMatchSaveString.isEmpty()){ // Sets all the components to the values within the savestring
-            // Coral floor pickup able | Coral Source pickup able | Defense received |
-            // Stop reason | team rank among alliance | other comments questions or concerns ||
             overBump.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString))); // Sets the value to the parsed value in the savestring
             postMatchSaveString = u.nextCommaOn(postMatchSaveString); // removes the value from the savestring
             // So on an so forth
@@ -153,8 +151,6 @@ public class activityAfterMatch extends AppCompatActivity {
 
         backButton.setOnClickListener((l)->{ // Sets current savestring to current values of components
             // Because it's the back button, these values can have no value
-            // Coral floor pickup able | Coral Source pickup able | Defense received |
-            // Stop reason | team rank among alliance | other comments questions or concerns ||
             String afterMatchInfo = "";
 
             afterMatchInfo += u.getData(underTrench) + ",";
@@ -188,8 +184,6 @@ public class activityAfterMatch extends AppCompatActivity {
             else if(u.getData(stopReasonGroup).isEmpty())
                 response = "Please fill in stop reason";
             else{ // If nothing is wrong, keep filling everything in
-                // Coral floor pickup able | Coral Source pickup able | Defense received |
-                // Stop reason | team rank among alliance | other comments questions or concerns ||
                 String postMatchInfo = "";
                 postMatchInfo += u.getData(overBump) + ",";
                 postMatchInfo += u.getData(underTrench) + ",";

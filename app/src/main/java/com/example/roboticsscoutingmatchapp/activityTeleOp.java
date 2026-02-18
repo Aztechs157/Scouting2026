@@ -83,12 +83,12 @@ public class activityTeleOp extends AppCompatActivity {
         Button FP15minus = findViewById(R.id.down_count_button_fp15);
         Button FP20minus = findViewById(R.id.down_count_button_fp20);
 
-        RadioGroup parkRadioGroup = findViewById(R.id.endgame_location); // Endgame RadioGroup
+        RadioGroup parkRadioGroup = findViewById(R.id.endgame_location);
         RadioButton level1Button = findViewById(R.id.level1_climb);
         RadioButton level2Button = findViewById(R.id.level2_climb);
         RadioButton level3Button = findViewById(R.id.level3_climb);
 
-        RadioGroup accuracyRadioGroup = findViewById(R.id.accuracy_position); // Endgame RadioGroup
+        RadioGroup accuracyRadioGroup = findViewById(R.id.accuracy_position);
         RadioButton pacManButton = findViewById(R.id.pac_manning);
         RadioButton standStillButton = findViewById(R.id.stand_still);
         RadioButton noDifferenceButton = findViewById(R.id.no_difference);
@@ -108,9 +108,7 @@ public class activityTeleOp extends AppCompatActivity {
 
         // Setting all fields which have data
         if(!teleOpSaveString.isEmpty()){
-            // #ACL1 | #ACL2 | #ACL3 | #ACL4 | # SCL1 | #SCL2 | #SCL3 | #SCL4 |
-            // #Attempted processor | #Scored Processor | #Attempted Barge | #Scored Barge |
-            // Park/Shallow/Deep | Time to hang | Algae Pickup | Coral Pickup ||
+            // #Fuel Shot | Accuracy % | #Fuel Passed | Hang Status | Hang Time | Accuracy Position |
             FSField.setText(u.untilNextComma(teleOpSaveString));
             teleOpSaveString = u.nextCommaOn(teleOpSaveString);
             FPField.setText(u.untilNextComma(teleOpSaveString));
@@ -224,9 +222,7 @@ public class activityTeleOp extends AppCompatActivity {
         // Back button, which sends data backwards even if it's unfilled
         backButton.setOnClickListener((l)->{
             String teleOpInfo = "";
-            // #ACL1 | #ACL2 | #ACL3 | #ACL4 | # SCL1 | #SCL2 | #SCL3 | #SCL4 |
-            // #Attempted processor | #Scored Processor | #Attempted Barge | #Scored Barge |
-            // Park/Shallow/Deep | Time to hang | Algae Pickup | Coral Pickup ||
+            // #Fuel Shot | Accuracy % | #Fuel Passed | Hang Status | Hang Time | Accuracy Position |
 
             teleOpInfo += u.getData(FSField) + ",";
             teleOpInfo += u.getData(accuracyGroup) + ",";
