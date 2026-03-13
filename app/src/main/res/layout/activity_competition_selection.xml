@@ -37,6 +37,36 @@
                 android:divider="@drawable/vertical_padding_small"
                 android:showDividers="middle">
                 <RadioButton
+                    android:id="@+id/comp_ns_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_northshore"/>
+                <RadioButton
+                    android:id="@+id/comp_western_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_western"/>
+                <RadioButton
+                    android:id="@+id/comp_gb_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_greaterboston"/>
+                <RadioButton
+                    android:id="@+id/comp_hf_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_hartford"/>
+                <RadioButton
+                    android:id="@+id/comp_unh_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_unh"/>
+                <RadioButton
                     android:id="@+id/comp_minuteman_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

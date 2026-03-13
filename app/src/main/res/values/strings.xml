@@ -35,6 +35,11 @@
     <string name="comp_worlds">Worlds</string>
     <string name="comp_test">Test</string>
     <string name="comp_minuteman">Minuteman</string>
+    <string name="comp_northshore">North Shore</string>
+    <string name="comp_western">Western NE</string>
+    <string name="comp_greaterboston">Greater Boston</string>
+    <string name="comp_hartford">Hartford</string>
+    <string name="comp_unh">UNH</string>
 
     <!--    Prematch  -->
     <string name="header1">Pre-Match</string>
