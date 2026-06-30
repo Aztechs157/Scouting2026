@@ -43,178 +43,215 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:text="@string/attempted_coral"/>
-
-                <!-- Attempted L1 and L2-->
+                    android:text="@string/scoring"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:divider="@drawable/horizontal_padding_big"
                     android:showDividers="middle">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
 
-                        <Button
-                            android:id="@+id/down_count_button_ac1"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/level1"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_ac1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_ac1"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/edit_text_fs"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_ac2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/level2"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_ac2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_ac2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up"
-
-                            />
-                    </LinearLayout>
+                        android:autofillHints="username"
+                        android:hint="@string/number_tried"
+                        android:inputType="number"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp" />
                 </LinearLayout>
 
-                <!-- Attempted L3 and L4 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:divider="@drawable/horizontal_padding_big"
                     android:showDividers="middle">
-                    <LinearLayout
+                    <RadioGroup
+                        android:id="@+id/accuracy_radio_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
+                        android:divider="@drawable/vertical_padding_small"
                         android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_ac3"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down"
-                            />
-                        <TextView
+                        <RadioButton
+                            android:id="@+id/underTen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/level3"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_ac3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_ac3"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_ac4"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down"
-                            />
-                        <TextView
+                            android:text="@string/less_than_ten"
+                            android:maxWidth="100dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/twentyFivePercent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/level4"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_ac4"
-                            android:layout_width="match_parent"
+                            android:text="@string/twentyfive_percent"
+                            android:maxWidth="90dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/fiftyPercent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_ac4"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up"
-                            />
-                    </LinearLayout>
+                            android:text="@string/fifty_percent"
+                            android:maxWidth="90dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/seventyFivePercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/seventyfive_percent"
+                            android:maxWidth="100dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                        <RadioButton
+                            android:id="@+id/overNinetyFive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/over_ninetyfive"
+                            android:maxWidth="100dp"
+                            android:maxHeight="48dp"
+                            android:textSize="14sp"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/horizontal_padding_big"
+                    android:showDividers="middle">
+                    <Button
+                        android:id="@+id/up_count_button_fs1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fs5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fs10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fs15"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fs20"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/horizontal_padding_big"
+                    android:showDividers="middle">
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number1"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number5"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number10"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number15"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number20"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/horizontal_padding_big"
+                    android:showDividers="middle">
+                    <Button
+                        android:id="@+id/down_count_button_fs1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fs5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fs10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fs15"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fs20"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
                 </LinearLayout>
 
                 <View
@@ -228,170 +265,156 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:text="@string/scored_coral"/>
-
-                <!-- Scored L1 and L2 -->
+                    android:text="@string/passing"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:divider="@drawable/horizontal_padding_big"
                     android:showDividers="middle">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+
+                    <EditText
+                        android:id="@+id/edit_text_fp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_rc1"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/level1"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_rc1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_rc1"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_rc2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/level2"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_rc2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_rc2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
+                        android:autofillHints="username"
+                        android:hint="@string/number_tried"
+                        android:inputType="number"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp" />
                 </LinearLayout>
 
-                <!-- Scored L3 and L4 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:divider="@drawable/horizontal_padding_big"
                     android:showDividers="middle">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_rc3"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/level3"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_rc3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_rc3"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_rc4"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/level4"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_rc4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_rc4"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/up_count_button_fp1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fp5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fp10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fp15"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                    <Button
+                        android:id="@+id/up_count_button_fp20"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_up"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/horizontal_padding_big"
+                    android:showDividers="middle">
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number1"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number5"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number10"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number15"/>
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        android:text="@string/number20"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/horizontal_padding_big"
+                    android:showDividers="middle">
+                    <Button
+                        android:id="@+id/down_count_button_fp1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fp5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fp10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fp15"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
+                    <Button
+                        android:id="@+id/down_count_button_fp20"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:insetTop="2dp"
+                        android:insetBottom="2dp"
+                        android:text="@string/counter_down"
+                        />
                 </LinearLayout>
             </LinearLayout>
 
@@ -400,211 +423,6 @@
                 android:layout_height="2dp"
                 android:background="@color/black"
                 />
-
-            <!--        algae process attempted -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:text="@string/algae"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:weightSum="2"
-                android:divider="@drawable/horizontal_padding_big"
-                android:showDividers="middle"
-                >
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="@string/processor"
-                        android:textColor="@color/black"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_pa"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/attempted"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_pa"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_pa"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_ps"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/scored"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_ps"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_ps"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="@string/barge"
-                        android:textColor="@color/black"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_ba"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/attempted"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_ba"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_ba"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintWidth_percent="0.5"
-                        android:divider="@drawable/horizontal_padding_small"
-                        android:showDividers="middle">
-                        <Button
-                            android:id="@+id/down_count_button_bs"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_down" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/scored"
-                            android:textColor="@color/black"/>
-                        <EditText
-                            android:id="@+id/edit_text_bs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="username"
-                            android:hint="@string/number_tried"
-                            android:inputType="number"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp" />
-                        <Button
-                            android:id="@+id/up_count_button_bs"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:insetTop="2dp"
-                            android:insetBottom="2dp"
-                            android:text="@string/counter_up" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-<!--algae process scored -->
-
-
-
-<!--            algae barge attempted -->
-
-
-<!--            alage barge scored -->
-
-
-<!--            end game break -->
-
-<!--            hang shallow/deep/park -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -615,6 +433,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/endgame_action"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
@@ -625,28 +444,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:showDividers="middle" >
 
                     <RadioButton
-                        android:id="@+id/hang_shallow"
+                        android:id="@+id/level1_climb"
                         android:layout_width="110dp"
                         android:layout_height="match_parent"
-                        android:text="@string/hang_shallow"
+                        android:text="@string/level1_climb"
                         android:textSize="22sp" />
 
                     <RadioButton
-                        android:id="@+id/hang_deep"
-                        android:layout_width="85dp"
+                        android:id="@+id/level2_climb"
+                        android:layout_width="110dp"
                         android:layout_height="match_parent"
-                        android:text="@string/hang_deep"
+                        android:text="@string/level2_climb"
                         android:textSize="22sp" />
                     <RadioButton
-                        android:id="@+id/park"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/level3_climb"
+                        android:layout_width="110dp"
                         android:layout_height="match_parent"
-                        android:textSize="22sp"
-                        android:text="@string/park"/>
+                        android:text="@string/level3_climb"
+                        android:textSize="22sp" />
                     <RadioButton
                         android:id="@+id/nothing"
                         android:layout_width="wrap_content"
@@ -667,6 +486,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/endgame_time"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
@@ -720,9 +540,6 @@
                         android:text="@string/number_tried"/>
                 </RadioGroup>
             </LinearLayout>
-
-
-<!--            what pieces could they pick up -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -732,27 +549,50 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pieces_pickup"
+                    android:text="@string/best_accuracy"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/pickup_algae"
-                    android:layout_width="138dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/pickup_algae" />
-
-                <CheckBox
-                    android:id="@+id/pickup_coral"
+                <RadioGroup
+                    android:id="@+id/accuracy_position"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/pickup_coral"
-                    />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle" >
+
+                    <RadioButton
+                        android:id="@+id/pac_manning"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pac_manning"
+                        android:textSize="22sp" />
+                    <RadioButton
+                        android:id="@+id/stand_still"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:text="@string/stand_still"
+                        android:textSize="22sp"
+                        />
+                    <RadioButton
+                        android:id="@+id/no_difference"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="22sp"
+                        android:text="@string/no_difference"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/bad_accuracy"
+                        android:textSize="22sp"
+                        android:text="@string/bad_accuracy"/>
+                </RadioGroup>
             </LinearLayout>
 <!--            button save and next -->
 

@@ -48,7 +48,6 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
-
         String scoutName;
         boolean changeCompetition = false;
         Bundle extras = getIntent().getExtras();

@@ -39,8 +39,13 @@ public class activityAfterMatch extends AppCompatActivity {
 
         // *---Defines all the components on the current page as variables---*
 
-        CheckBox floorIntake = findViewById(R.id.floor_intake);
-        CheckBox humanPlayerStation = findViewById(R.id.human_player_intake);
+        CheckBox overBump = findViewById(R.id.over_bump);
+        CheckBox underTrench = findViewById(R.id.under_trench);
+        CheckBox playedDefense = findViewById(R.id.played_defense);
+        CheckBox collectedFuel = findViewById(R.id.collected_fuel);
+        CheckBox passedFuel = findViewById(R.id.passed_fuel);
+        CheckBox inactive = findViewById(R.id.inactive);
+        CheckBox other = findViewById(R.id.other);
 
         RadioGroup stopReasonGroup = findViewById(R.id.why_robot_stopped);
         RadioButton diedButton = findViewById(R.id.died);
@@ -81,12 +86,20 @@ public class activityAfterMatch extends AppCompatActivity {
         }
 
         if(!postMatchSaveString.isEmpty()){ // Sets all the components to the values within the savestring
-            // Coral floor pickup able | Coral Source pickup able | Defense received |
-            // Stop reason | team rank among alliance | other comments questions or concerns ||
-            floorIntake.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString))); // Sets the value to the parsed value in the savestring
+            overBump.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString))); // Sets the value to the parsed value in the savestring
             postMatchSaveString = u.nextCommaOn(postMatchSaveString); // removes the value from the savestring
             // So on an so forth
-            humanPlayerStation.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            underTrench.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            postMatchSaveString = u.nextCommaOn(postMatchSaveString);
+            playedDefense.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            postMatchSaveString = u.nextCommaOn(postMatchSaveString);
+            collectedFuel.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            postMatchSaveString = u.nextCommaOn(postMatchSaveString);
+            passedFuel.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            postMatchSaveString = u.nextCommaOn(postMatchSaveString);
+            inactive.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            postMatchSaveString = u.nextCommaOn(postMatchSaveString);
+            other.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
             postMatchSaveString = u.nextCommaOn(postMatchSaveString);
 
             if(u.untilNextComma(postMatchSaveString).equals("No Defense")){
@@ -138,12 +151,15 @@ public class activityAfterMatch extends AppCompatActivity {
 
         backButton.setOnClickListener((l)->{ // Sets current savestring to current values of components
             // Because it's the back button, these values can have no value
-            // Coral floor pickup able | Coral Source pickup able | Defense received |
-            // Stop reason | team rank among alliance | other comments questions or concerns ||
             String afterMatchInfo = "";
 
-            afterMatchInfo += u.getData(floorIntake) + ",";
-            afterMatchInfo += u.getData(humanPlayerStation) + ",";
+            afterMatchInfo += u.getData(underTrench) + ",";
+            afterMatchInfo += u.getData(overBump) + ",";
+            afterMatchInfo += u.getData(playedDefense) + ",";
+            afterMatchInfo += u.getData(collectedFuel) + ",";
+            afterMatchInfo += u.getData(passedFuel) + ",";
+            afterMatchInfo += u.getData(inactive) + ",";
+            afterMatchInfo += u.getData(other) + ",";
             afterMatchInfo += u.getData(defenseReceivedGroup) + ",";
             afterMatchInfo += u.getData(stopReasonGroup) + ",";
             afterMatchInfo += u.getData(rankGroup) + ",";
@@ -168,11 +184,14 @@ public class activityAfterMatch extends AppCompatActivity {
             else if(u.getData(stopReasonGroup).isEmpty())
                 response = "Please fill in stop reason";
             else{ // If nothing is wrong, keep filling everything in
-                // Coral floor pickup able | Coral Source pickup able | Defense received |
-                // Stop reason | team rank among alliance | other comments questions or concerns ||
                 String postMatchInfo = "";
-                postMatchInfo += u.getData(floorIntake) + ",";
-                postMatchInfo += u.getData(humanPlayerStation) + ",";
+                postMatchInfo += u.getData(overBump) + ",";
+                postMatchInfo += u.getData(underTrench) + ",";
+                postMatchInfo += u.getData(playedDefense) + ",";
+                postMatchInfo += u.getData(collectedFuel) + ",";
+                postMatchInfo += u.getData(passedFuel) + ",";
+                postMatchInfo += u.getData(inactive) + ",";
+                postMatchInfo += u.getData(other) + ",";
                 postMatchInfo += u.getData(defenseReceivedGroup) + ",";
                 postMatchInfo += u.getData(stopReasonGroup) + ",";
                 postMatchInfo += u.getData(rankGroup) + ",";

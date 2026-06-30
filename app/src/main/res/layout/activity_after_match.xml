@@ -37,7 +37,7 @@
         android:paddingHorizontal="20dp"
         >
 
-<!--        what pieces can robot manipulate -->
+<!--        what movement is the robot capable of -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/how_pick_ip_coral"
+                android:text="@string/field_navigation"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -57,17 +58,64 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/floor_intake"
+                android:id="@+id/over_bump"
                 android:layout_width="138dp"
                 android:layout_height="match_parent"
-                android:text="@string/floor_intake" />
+                android:text="@string/bump"/>
 
             <CheckBox
-                android:id="@+id/human_player_intake"
+                android:id="@+id/under_trench"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/human_player_intake"
+                android:text="@string/trench"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/hub_inactive"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/played_defense"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/played_defense"/>
+            <CheckBox
+                android:id="@+id/collected_fuel"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/collected_fuel"/>
+            <CheckBox
+                android:id="@+id/passed_fuel"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/passed_fuel"/>
+            <CheckBox
+                android:id="@+id/inactive"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/inactive"/>
+            <CheckBox
+                android:id="@+id/other"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="@string/other"/>
+
         </LinearLayout>
 <!--        If they robot was stopped why? -->
         <LinearLayout
@@ -80,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/robot_stopped"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
         <LinearLayout
@@ -142,6 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/defense_received_title"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
         <LinearLayout
@@ -188,6 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/ranking_of_team"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
         <LinearLayout
@@ -232,7 +283,8 @@
     <TextView
         android:layout_width="264dp"
         android:layout_height="match_parent"
-        android:text="@string/endText" />
+        android:text="@string/endText"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
 <!--        save button -->

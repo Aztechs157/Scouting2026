@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
                 android:text="@string/competition_header"
+                android:textColor="@color/black"
                 android:gravity="center"/>
             <RadioGroup
                 android:id="@+id/competition_radio_group"
@@ -36,36 +37,79 @@
                 android:divider="@drawable/vertical_padding_small"
                 android:showDividers="middle">
                 <RadioButton
+                    android:id="@+id/comp_ns_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_northshore"/>
+                <RadioButton
+                    android:id="@+id/comp_western_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_western"/>
+                <RadioButton
+                    android:id="@+id/comp_gb_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_greaterboston"/>
+                <RadioButton
+                    android:id="@+id/comp_hf_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_hartford"/>
+                <RadioButton
+                    android:id="@+id/comp_unh_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_unh"/>
+                <RadioButton
+                    android:id="@+id/comp_minuteman_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/comp_minuteman"/>
+                <RadioButton
+                    android:id="@+id/comp_mayhem_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="@string/comp_mayhem"/>
                 <RadioButton
+                    android:id="@+id/comp_bc_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="@string/comp_battlecry"/>
                 <RadioButton
+                    android:id="@+id/comp_nerd_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="@string/comp_nerd"/>
                 <RadioButton
+                    android:id="@+id/comp_bob_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="@string/comp_bay_battle"/>
                 <RadioButton
+                    android:id="@+id/comp_graniteState_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="@string/comp_granite_state"/>
                 <RadioButton
+                    android:id="@+id/comp_waterbury_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="@string/comp_waterbury"/>
                 <RadioButton
+                    android:id="@+id/comp_uri_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
