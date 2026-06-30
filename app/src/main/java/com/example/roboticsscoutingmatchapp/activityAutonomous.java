@@ -124,7 +124,7 @@ public class activityAutonomous extends AppCompatActivity {
             }
             autoSaveString = u.nextCommaOn(autoSaveString);
 
-            String accuracyChoice = u.untilNextComma(teleOpSaveString);
+            String accuracyChoice = u.untilNextComma(autoSaveString);
             switch(accuracyChoice){
                 case "Less Than 10%":
                     lessThanTen.toggle();
