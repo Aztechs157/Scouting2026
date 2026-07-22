@@ -66,12 +66,28 @@ public class MatchData {
     }
 
     public double getCalculatedAutoScore() {
-        return autoScored * getAccuracyMultiplier(autoAccuracy);
+        return autoScored * getAccuracyMultiplier(autoAccuracy) + (autoHang ? 15 : 0);
     }
 
+
     public double getCalculatedTeleopScore() {
-        return teleopScored * getAccuracyMultiplier(teleopAccuracy);
+        return teleopScored * getAccuracyMultiplier(teleopAccuracy) + getClimbPoints();
     }
+
+    public double getTotalScore() {
+        return getCalculatedAutoScore() + getCalculatedTeleopScore();
+    }
+
+    public int getClimbPoints() {
+        if (hangStatus == null) return 0;
+        switch (hangStatus) {
+            case "Level 1": return 10;
+            case "Level 2": return 20;
+            case "Level 3": return 30;
+            default: return 0;
+        }
+    }
+
 
     private double getAccuracyMultiplier(String accuracy) {
         if (accuracy == null) return 0;

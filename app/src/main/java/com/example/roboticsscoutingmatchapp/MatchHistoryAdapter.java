@@ -12,10 +12,16 @@ import java.util.List;
 
 public class MatchHistoryAdapter extends RecyclerView.Adapter<MatchHistoryAdapter.ViewHolder> {
 
-    private List<MatchData> matches;
+    public interface OnMatchClickListener {
+        void onMatchClick(MatchData match);
+    }
 
-    public MatchHistoryAdapter(List<MatchData> matches) {
+    private List<MatchData> matches;
+    private OnMatchClickListener listener;
+
+    public MatchHistoryAdapter(List<MatchData> matches, OnMatchClickListener listener) {
         this.matches = matches;
+        this.listener = listener;
     }
 
     public void updateData(List<MatchData> newMatches) {
@@ -38,7 +44,14 @@ public class MatchHistoryAdapter extends RecyclerView.Adapter<MatchHistoryAdapte
         holder.scoreSummary.setText(String.format("Auto: %d | Tele: %d", match.autoScored, match.teleopScored));
         holder.hangStatus.setText("Climb: " + match.hangStatus);
         holder.scouterName.setText(match.scout);
+        
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onMatchClick(match);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
