@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -93,6 +94,17 @@ public class activityPreMatch extends AppCompatActivity {
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
         String finalCompetitionString = competitionString;
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent i = new Intent(activityPreMatch.this, ActivityCompetitionSelection.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("chooseNewCompetition", true);
+                startActivity(i);
+            }
+        });
+
         saveButton.setOnClickListener((l) -> {
             // Check if all fields are full
 //            findViewById(R.id.scroll_view);
@@ -122,6 +134,7 @@ public class activityPreMatch extends AppCompatActivity {
                 i.putExtra("auto", autoSaveString);
                 i.putExtra("teleOp", teleOpSaveString);
                 i.putExtra("postMatch", postMatchSaveString);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
                 this.startActivity(i);
             }
@@ -133,9 +146,7 @@ public class activityPreMatch extends AppCompatActivity {
         });
 
         backButton.setOnClickListener((l)->{
-           Intent i = new Intent(this, ActivityCompetitionSelection.class);
-           i.putExtra("chooseNewCompetition", true);
-           this.startActivity(i);
+           getOnBackPressedDispatcher().onBackPressed();
         });
 
     }

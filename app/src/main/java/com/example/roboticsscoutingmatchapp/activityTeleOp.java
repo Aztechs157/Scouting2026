@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -220,26 +221,34 @@ public class activityTeleOp extends AppCompatActivity {
 
 
         // Back button, which sends data backwards even if it's unfilled
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                String teleOpInfo = "";
+                // #Fuel Shot | Accuracy % | #Fuel Passed | Hang Status | Hang Time | Accuracy Position |
+
+                teleOpInfo += u.getData(FSField) + ",";
+                teleOpInfo += u.getData(accuracyGroup) + ",";
+
+                teleOpInfo += u.getData(FPField) + ",";
+
+                teleOpInfo += u.getData(parkRadioGroup) + ",";
+                teleOpInfo += u.getData(endgameTimeGroup) + ",";
+                teleOpInfo += u.getData(accuracyRadioGroup) + ",";
+
+                Intent i = new Intent(activityTeleOp.this, activityAutonomous.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("preMatch", preMatchSaveString);
+                i.putExtra("auto", autoSaveString);
+                i.putExtra("teleOp", teleOpInfo);
+                i.putExtra("postMatch", postMatchSaveString);
+
+                startActivity(i);
+            }
+        });
+
         backButton.setOnClickListener((l)->{
-            String teleOpInfo = "";
-            // #Fuel Shot | Accuracy % | #Fuel Passed | Hang Status | Hang Time | Accuracy Position |
-
-            teleOpInfo += u.getData(FSField) + ",";
-            teleOpInfo += u.getData(accuracyGroup) + ",";
-
-            teleOpInfo += u.getData(FPField) + ",";
-
-            teleOpInfo += u.getData(parkRadioGroup) + ",";
-            teleOpInfo += u.getData(endgameTimeGroup) + ",";
-            teleOpInfo += u.getData(accuracyRadioGroup) + ",";
-
-            Intent i = new Intent(this, activityAutonomous.class);
-            i.putExtra("preMatch", preMatchSaveString);
-            i.putExtra("auto", autoSaveString);
-            i.putExtra("teleOp", teleOpInfo);
-            i.putExtra("postMatch", postMatchSaveString);
-
-            this.startActivity(i);
+            getOnBackPressedDispatcher().onBackPressed();
         });
 
         saveButton.setOnClickListener((l) -> {
@@ -269,6 +278,7 @@ public class activityTeleOp extends AppCompatActivity {
                 teleOpInfo += u.getData(accuracyRadioGroup) + ",";
 
                 Intent i = new Intent(this, activityAfterMatch.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("preMatch", preMatchSaveString);
                 i.putExtra("auto", autoSaveString);
                 i.putExtra("teleOp", teleOpInfo);

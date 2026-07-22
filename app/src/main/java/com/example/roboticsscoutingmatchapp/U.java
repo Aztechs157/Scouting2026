@@ -134,97 +134,121 @@ public class U extends AppCompatActivity{
     }
 
     /**
-     * Returns <code>text</code> from the first comma appearance and on, provided there is a comma.</br>
-     * Otherwise, returns the entire <code>text</code>.
-     * @param text <code>String</code>: a <code>String</code> to be returned from the next comma.
+     * Returns {@code text} from the first comma appearance and on, provided there is a comma.
+     * Otherwise, returns an empty string.
+     * @param text {@code String}: a {@code String} to be returned from the next comma.
      * @return A copy of {@code text} from the next available comma on.
      * @author Akash Ghoshroy
      */
     public String nextCommaOn(String text){
+        if (text == null || !text.contains(",")) return "";
         return text.substring(text.indexOf(",")+1);
     }
 
     /**
-     * Returns <code>text</code> from the <code>commaNum</code>th comma on
-     * @param text <code>String</code>: the {@code String} from which data should be returned
+     * Returns {@code text} from the {@code commaNum}th comma on
+     * @param text {@code String}: the {@code String} from which data should be returned
      * @param commaNum {@code int}: the {@code int} representing the comma from which data should be returned after
      * @return A {@code String} copy of {@code text} from the {@code commaNum}th comma on
      * @author Akash Ghoshroy
      */
     public String nextCommaOn(String text, int commaNum){
+        if (text == null || !text.contains(",")) return "";
         if(commaNum <= 1){ return text.substring(text.indexOf(",")+1);}
         else{return nextCommaOn(text.substring(text.indexOf(",")+1), commaNum-1);}
     }
     /**
-     * Returns a copy of {@code text} from the beginning of {@code text} to the next comma.</br>
-     * Pre-Condition: {@code text} must contain at least one comma.
+     * Returns a copy of {@code text} from the beginning of {@code text} to the next comma.
+     * Otherwise, returns the entire string.
      * @param text {@code String}: a {@code String} for which a copy of until the next comma will be returned.
      * @return A copy of {@code text} from the beginning until the next comma.
      * @author Akash Ghoshroy
      */
     public String untilNextComma(String text){
+        if (text == null) return "";
+        if (!text.contains(",")) return text;
         return text.substring(0, text.indexOf(","));
     }
 
     /**
-     * Increments the value represented within {@code field} by one.</br>
-     * Sets the value represented within {@code field} to one if {@code field} is empty.
+     * Increments the value represented within {@code field} by one.
+     * Sets the value represented within {@code field} to one if {@code field} is empty or invalid.
      * @param field {@code TextView}: a {@code TextView} with either no value or an integer value.
      * @author Akash Ghoshroy
      */
     public void incrementText(TextView field){
-        if(field.getText().toString().isEmpty()){
-            field.setText("1"); // If the TextView is empty, it gets set to have a value of one
+        String text = field.getText().toString();
+        if(text.isEmpty()){
+            field.setText("1");
         }else{
-            int currentNum = Integer.parseInt(field.getText().toString()); // Sets currentNum to the integer value within field
-            currentNum++; // Increments currentNum
-            field.setText(Integer.toString(currentNum)); // Sets the display value of field to currentNum
+            try {
+                int currentNum = Integer.parseInt(text);
+                currentNum++;
+                field.setText(Integer.toString(currentNum));
+            } catch (NumberFormatException e) {
+                field.setText("1");
+            }
         }
     }
 
     /**
-     * Increments the value represented within {@code field} by the value within {@code incrementBy}.</br>
-     * Sets the value represented within {@code field} to the value of {@code incrementBy} if {@code field} is empty.
+     * Increments the value represented within {@code field} by the value within {@code incrementBy}.
+     * Sets the value represented within {@code field} to the value of {@code incrementBy} if {@code field} is empty or invalid.
      * @param field {@code TextView}: a {@code TextView} with either no value or an integer value.
      * @param incrementBy {@code int}: an {@code int} with either a positive or negative value
      * @author Akash Ghoshroy
      */
     public void incrementText(TextView field, int incrementBy){
-        if(field.getText().toString().isEmpty()){
-            field.setText(Integer.toString(incrementBy)); // If the TextView is empty, it gets set to have the value of incrementBy
+        String text = field.getText().toString();
+        if(text.isEmpty()){
+            field.setText(Integer.toString(incrementBy));
         }else{
-            field.setText(Integer.toString(Integer.parseInt(field.getText().toString())+incrementBy)); // Sets the display value to the current display value + incrementBy
+            try {
+                field.setText(Integer.toString(Integer.parseInt(text) + incrementBy));
+            } catch (NumberFormatException e) {
+                field.setText(Integer.toString(incrementBy));
+            }
         }
     }
 
     /**
-     * Increments the value represented within {@code field} by one.</br>
-     * Sets the value represented within {@code field} to one if {@code field} is empty.
+     * Increments the value represented within {@code field} by one.
+     * Sets the value represented within {@code field} to one if {@code field} is empty or invalid.
      * @param field {@code EditText}: an {@code EditText} with either no value or an integer value.
      * @author Akash Ghoshroy
      */
     public void incrementText(EditText field){
-        if(field.getText().toString().isEmpty()){
-            field.setText("1"); // If the EditText is empty, it gets set to have a value of one
+        String text = field.getText().toString();
+        if(text.isEmpty()){
+            field.setText("1");
         }else{
-            int currentNum = Integer.parseInt(field.getText().toString()); // Sets currentNum to the integer value within field
-            field.setText(Integer.toString(currentNum+1)); // Sets the display value to currentNum + one
+            try {
+                int currentNum = Integer.parseInt(text);
+                field.setText(Integer.toString(currentNum + 1));
+            } catch (NumberFormatException e) {
+                field.setText("1");
+            }
         }
     }
 
     /**
-     * Increments the value represented within {@code field} by the value within {@code incrementBy}.</br>
-     * Sets the value represented within {@code field} to the value of {@code incrementBy} if {@code field} is empty.
+     * Increments the value represented within {@code field} by the value within {@code incrementBy}.
+     * Sets the value represented within {@code field} to the value of {@code incrementBy} if {@code field} is empty or invalid.
      * @param field {@code EditText}: an {@code EditText} with either no value or an integer value.
      * @param incrementBy {@code int}: an {@code int} with either a positive or negative value
      * @author Akash Ghoshroy
      */
     public void incrementText(EditText field, int incrementBy){
-        if(field.getText().toString().isEmpty()){
-            field.setText(Integer.toString(incrementBy)); // If the EditText is empty, it gets set to have the value of incrementBy
+        String text = field.getText().toString();
+        if(text.isEmpty()){
+            field.setText(Integer.toString(incrementBy));
         }else{
-            int currentNum = Integer.parseInt(field.getText().toString()); // Sets currentNum to the integer value within field
-            field.setText(Integer.toString(currentNum+incrementBy)); // Sets the display value to currentNum + incrementBy
+            try {
+                int currentNum = Integer.parseInt(text);
+                field.setText(Integer.toString(currentNum + incrementBy));
+            } catch (NumberFormatException e) {
+                field.setText(Integer.toString(incrementBy));
+            }
         }
     }
 

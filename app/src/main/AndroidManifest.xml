@@ -36,6 +36,9 @@
             android:name=".activityPreMatch"
             android:exported="false" >
         </activity>
+        <activity
+            android:name=".activityDataShowing"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,8 +1,11 @@
 package com.example.roboticsscoutingmatchapp;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,15 +15,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class activityAfterMatch extends AppCompatActivity {
 
@@ -149,29 +151,37 @@ public class activityAfterMatch extends AppCompatActivity {
             postMatchSaveString = u.nextCommaOn(postMatchSaveString);
         }
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Because it's the back button, these values can have no value
+                String afterMatchInfo = "";
+
+                afterMatchInfo += u.getData(underTrench) + ",";
+                afterMatchInfo += u.getData(overBump) + ",";
+                afterMatchInfo += u.getData(playedDefense) + ",";
+                afterMatchInfo += u.getData(collectedFuel) + ",";
+                afterMatchInfo += u.getData(passedFuel) + ",";
+                afterMatchInfo += u.getData(inactive) + ",";
+                afterMatchInfo += u.getData(other) + ",";
+                afterMatchInfo += u.getData(defenseReceivedGroup) + ",";
+                afterMatchInfo += u.getData(stopReasonGroup) + ",";
+                afterMatchInfo += u.getData(rankGroup) + ",";
+                afterMatchInfo += u.stripText(finalText.getText().toString(), U.DELIMITER) + ",";
+
+                Intent i = new Intent(activityAfterMatch.this, activityTeleOp.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("preMatch", preMatchSaveString);
+                i.putExtra("auto", autoSaveString);
+                i.putExtra("teleOp", teleOpSaveString);
+                i.putExtra("postMatch", afterMatchInfo);
+
+                startActivity(i);
+            }
+        });
+
         backButton.setOnClickListener((l)->{ // Sets current savestring to current values of components
-            // Because it's the back button, these values can have no value
-            String afterMatchInfo = "";
-
-            afterMatchInfo += u.getData(underTrench) + ",";
-            afterMatchInfo += u.getData(overBump) + ",";
-            afterMatchInfo += u.getData(playedDefense) + ",";
-            afterMatchInfo += u.getData(collectedFuel) + ",";
-            afterMatchInfo += u.getData(passedFuel) + ",";
-            afterMatchInfo += u.getData(inactive) + ",";
-            afterMatchInfo += u.getData(other) + ",";
-            afterMatchInfo += u.getData(defenseReceivedGroup) + ",";
-            afterMatchInfo += u.getData(stopReasonGroup) + ",";
-            afterMatchInfo += u.getData(rankGroup) + ",";
-            afterMatchInfo += u.stripText(finalText.getText().toString(), U.DELIMITER) + ",";
-
-            Intent i = new Intent(this, activityTeleOp.class);
-            i.putExtra("preMatch", preMatchSaveString);
-            i.putExtra("auto", autoSaveString);
-            i.putExtra("teleOp", teleOpSaveString);
-            i.putExtra("postMatch", afterMatchInfo);
-
-            this.startActivity(i);
+            getOnBackPressedDispatcher().onBackPressed();
         });
 
         saveButton.setOnClickListener((l)->{ // Sets current savestring to current component values
@@ -208,34 +218,29 @@ public class activityAfterMatch extends AppCompatActivity {
                 Log.d("File Name: ", fileName);
 
                 try {
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
-                    if (!file.exists()) {
-                        boolean fileCreated = file.createNewFile();
-                        if(!fileCreated) {
-                            Toast.makeText(this, "File " + fileName + " has not been created", Toast.LENGTH_SHORT).show();
-                            Log.d("File written: ", "File not created");
-                        }else {
-                            Toast.makeText(this, "File " + fileName + " has been created", Toast.LENGTH_SHORT).show();
-                            Log.d("File written: ", "File created");
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+                    contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
+                    contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + "/RoboticsScouting");
+
+                    Uri uri = getContentResolver().insert(MediaStore.Files.getContentUri("external"), contentValues);
+                    if (uri != null) {
+                        try (OutputStream outputStream = getContentResolver().openOutputStream(uri)) {
+                            if (outputStream != null) {
+                                outputStream.write(preMatchSaveString.getBytes());
+                                outputStream.write(autoSaveString.getBytes());
+                                outputStream.write(teleOpSaveString.getBytes());
+                                outputStream.write(postMatchInfo.getBytes());
+                                Toast.makeText(this, "File " + fileName + " saved to Documents/RoboticsScouting", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }else{
-                        Log.d("File already existed", "File already existed");
                     }
-
-                    FileWriter fw = new FileWriter(file.getAbsoluteFile());
-                    BufferedWriter bw = new BufferedWriter(fw);
-
-                    bw.write(preMatchSaveString);
-                    bw.write(autoSaveString);
-                    bw.write(teleOpSaveString);
-                    bw.write(postMatchInfo);
-                    bw.flush();
-                    bw.close();
                 } catch (IOException e) {
                     Log.d("Error thrown:", "+==========+Error Thrown+==========+");
                     Log.getStackTraceString(e);
                 }
                 Intent i = new Intent(this, ActivityCompetitionSelection.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("scoutName", scoutName);
                 this.startActivity(i);
             }

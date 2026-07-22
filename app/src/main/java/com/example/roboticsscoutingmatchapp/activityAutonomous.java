@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -171,24 +172,30 @@ public class activityAutonomous extends AppCompatActivity {
         FP20minus.setOnClickListener((l)->u.incrementText(FPField, -20));
         // Sets all the buttons to either increment or decrement their respective buttons.
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Starting Position | #Shots Fired | Accuracy % | #Fuel Passed | Auto Hang |
+                String autoInfo = "";
+                autoInfo += u.getData(positionGroup1) + ",";
+                autoInfo += u.getData(FSField) + ",";
+                autoInfo += u.getData(accuracyGroup) + ",";
+                autoInfo += u.getData(FPField) + ",";
+                autoInfo += u.getData(autoHang) + ",";
+
+                Intent i = new Intent(activityAutonomous.this, activityPreMatch.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("preMatch", preMatchSaveString);
+                i.putExtra("auto", autoInfo);
+                i.putExtra("teleOp", teleOpSaveString);
+                i.putExtra("postMatch", postMatchSaveString);
+
+                startActivity(i);
+            }
+        });
+
         backButton.setOnClickListener((l)-> {
-            // Starting Position | #Shots Fired | Accuracy % | #Fuel Passed | Auto Hang |
-            String autoInfo = "";
-            autoInfo += u.getData(positionGroup1);
-
-            autoInfo += u.getData(FSField);
-            autoInfo += u.getData(accuracyGroup);
-
-            autoInfo += u.getData(FPField);
-
-            autoInfo += u.getData(autoHang);
-            Intent i = new Intent(this, activityPreMatch.class);
-            i.putExtra("preMatch", preMatchSaveString);
-            i.putExtra("auto", autoInfo);
-            i.putExtra("teleOp", teleOpSaveString);
-            i.putExtra("postMatch", postMatchSaveString);
-
-            this.startActivity(i);
+            getOnBackPressedDispatcher().onBackPressed();
         });
 
         saveButton.setOnClickListener((l)-> {
@@ -213,6 +220,7 @@ public class activityAutonomous extends AppCompatActivity {
                 autoInfo += u.getData(autoHang) + ",";
 
                 Intent i = new Intent(this, activityTeleOp.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("preMatch", preMatchSaveString);
                 i.putExtra("auto", autoInfo);
                 i.putExtra("teleOp", teleOpSaveString);
