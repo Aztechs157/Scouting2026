@@ -153,8 +153,8 @@ public class activityAfterMatch extends AppCompatActivity {
             // Because it's the back button, these values can have no value
             String afterMatchInfo = "";
 
-            afterMatchInfo += u.getData(underTrench) + ",";
             afterMatchInfo += u.getData(overBump) + ",";
+            afterMatchInfo += u.getData(underTrench) + ",";
             afterMatchInfo += u.getData(playedDefense) + ",";
             afterMatchInfo += u.getData(collectedFuel) + ",";
             afterMatchInfo += u.getData(passedFuel) + ",";

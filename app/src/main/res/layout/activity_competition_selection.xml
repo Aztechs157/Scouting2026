@@ -151,7 +151,13 @@
                 android:orientation="horizontal"
                 android:gravity="end"
                 android:divider="@drawable/horizontal_padding_small"
-                android:showDividers="end">
+                android:showDividers="middle|end">
+                <Button
+                    android:id="@+id/view_dashboard_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/button_dashboard"/>
                 <Button
                     android:id="@+id/save_button"
                     android:layout_width="wrap_content"

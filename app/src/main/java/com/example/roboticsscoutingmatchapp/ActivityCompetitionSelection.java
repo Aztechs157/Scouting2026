@@ -45,6 +45,7 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
 //        RadioButton worldsButton = findViewById(R.id.comp_worlds);
 //        RadioButton testButton = findViewById(R.id.comp_test);
         Button saveButton = findViewById(R.id.save_button);
+        Button viewDashboardButton = findViewById(R.id.view_dashboard_button);
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
@@ -115,6 +116,11 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
                 unfilledMessage.setText(response);
                 unfilledMessage.show();
             }
+        });
+
+        viewDashboardButton.setOnClickListener((l) -> {
+            Intent i = new Intent(this, activityDataShowing.class);
+            this.startActivity(i);
         });
     }
 }
