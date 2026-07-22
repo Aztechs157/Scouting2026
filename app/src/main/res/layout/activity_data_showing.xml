@@ -1,363 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activityDataShowing">
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
-        android:id="@+id/header_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".activityDataShowing">
 
-        <Button
-            android:id="@+id/scout_match_button"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Scout Match"
-            android:textColor="@color/aztech_blue" />
-
-        <TextView
-            android:id="@+id/dashboard_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Data Hub"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/aztech_blue" />
-
-        <View
-            android:layout_width="80dp"
-            android:layout_height="0dp" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/header_layout"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- 1. TOP TEAMS SECTION (Moved to top) -->
-            <com.google.android.material.card.MaterialCardView
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:title="Data Hub"
+                app:titleTextColor="@color/aztech_yellow" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Leaderboard"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="@color/aztech_blue"
-                        android:gravity="center"
-                        android:layout_marginBottom="12dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginBottom="12dp">
-
-                        <Spinner
-                            android:id="@+id/leaderboard_metric_spinner"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:minHeight="44dp"/>
-
-                        <View
-                            android:layout_width="8dp"
-                            android:layout_height="0dp"/>
-
-                        <Spinner
-                            android:id="@+id/comp_filter_spinner"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:minHeight="44dp"/>
-                    </LinearLayout>
-
-                    <com.github.mikephil.charting.charts.HorizontalBarChart
-                        android:id="@+id/leaderboard_bar_chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_marginBottom="8dp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <Button
-                            android:id="@+id/prev_leaderboard_button"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="← Prev"/>
-
-                        <TextView
-                            android:id="@+id/leaderboard_page_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rank 1-5"
-                            android:layout_marginHorizontal="16dp"
-                            android:textStyle="bold"/>
-
-                        <Button
-                            android:id="@+id/next_leaderboard_button"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Next →"/>
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:id="@+id/top_teams_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-                        <!-- Keep for logic but chart is primary -->
-                    </LinearLayout>
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- 2. SEARCH SECTION -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/team_search_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Search Specific Team"
-                android:paddingHorizontal="16dp"
-                android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <AutoCompleteTextView
-                    android:id="@+id/team_search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- 3. SELECTED TEAM SUMMARY -->
             <LinearLayout
-                android:id="@+id/summary_cards_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingBottom="16dp"
-                android:weightSum="4">
+                android:orientation="vertical">
 
+                <!-- 1. TOP TEAMS SECTION -->
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="2dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Avg Auto"
-                            android:textSize="10sp"/>
-                        <TextView
-                            android:id="@+id/avg_auto_scored"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0.0"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/aztech_blue"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="2dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Avg Teleop"
-                            android:textSize="10sp"/>
-                        <TextView
-                            android:id="@+id/avg_teleop_scored"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0.0"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/aztech_blue"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="2dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Avg Passing"
-                            android:textSize="10sp"/>
-                        <TextView
-                            android:id="@+id/avg_passing"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0.0"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/aztech_blue"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Climb Rate"
-                            android:textSize="10sp"/>
-                        <TextView
-                            android:id="@+id/climb_success_rate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0%"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/aztech_blue"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-
-            <!-- 4. TREND GRAPH (REPLACING TEXT BLOCK) -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/trend_card"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp">
-                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-                    <TextView
-                        android:id="@+id/trend_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Scoring Trend"
-                        android:textStyle="bold"
-                        android:textColor="@color/aztech_blue"
-                        android:layout_marginBottom="8dp"/>
-
-                    <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/scoring_line_chart"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/trend_placeholder_text"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Leaderboard"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/aztech_blue"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp">
+
+                            <Spinner
+                                android:id="@+id/leaderboard_metric_spinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="44dp"/>
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="0dp"/>
+
+                            <Spinner
+                                android:id="@+id/comp_filter_spinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="44dp"/>
+                        </LinearLayout>
+
+                        <com.github.mikephil.charting.charts.HorizontalBarChart
+                            android:id="@+id/leaderboard_bar_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:layout_marginBottom="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <Button
+                                android:id="@+id/prev_leaderboard_button"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="← Prev"/>
+
+                            <TextView
+                                android:id="@+id/leaderboard_page_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rank 1-5"
+                                android:layout_marginHorizontal="16dp"
+                                android:textStyle="bold"/>
+
+                            <Button
+                                android:id="@+id/next_leaderboard_button"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Next →"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/top_teams_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 2. SEARCH SECTION -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/team_search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Search Specific Team"
+                    android:paddingHorizontal="16dp"
+                    android:layout_marginBottom="8dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/team_search_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 3. SELECTED TEAM SUMMARY -->
+                <LinearLayout
+                    android:id="@+id/summary_cards_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingBottom="16dp"
+                    android:weightSum="4">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="2dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="4dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avg Auto"
+                                android:textSize="10sp"/>
+                            <TextView
+                                android:id="@+id/avg_auto_scored"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/aztech_blue"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="2dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="4dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avg Teleop"
+                                android:textSize="10sp"/>
+                            <TextView
+                                android:id="@+id/avg_teleop_scored"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/aztech_blue"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="2dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="4dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avg Passing"
+                                android:textSize="10sp"/>
+                            <TextView
+                                android:id="@+id/avg_passing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/aztech_blue"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="2dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="4dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Climb Rate"
+                                android:textSize="10sp"/>
+                            <TextView
+                                android:id="@+id/climb_success_rate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0%"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/aztech_blue"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- 4. TREND GRAPH -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/trend_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="Select a team to see trend"
-                        android:alpha="0.5"
-                        android:visibility="gone"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <TextView
+                            android:id="@+id/trend_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Scoring Trend"
+                            android:textStyle="bold"
+                            android:textColor="@color/aztech_blue"
+                            android:layout_marginBottom="8dp"/>
 
-            <!-- 5. MATCH HISTORY -->
-            <TextView
-                android:id="@+id/history_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Recent Match History"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="8dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/scoring_line_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/match_history_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="200dp"
-                android:paddingHorizontal="8dp"
-                android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/item_match_history" />
+                <!-- 5. MATCH HISTORY -->
+                <TextView
+                    android:id="@+id/history_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recent Match History"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="8dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="80dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/match_history_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    android:paddingHorizontal="8dp"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_match_history" />
 
-        </LinearLayout>
-    </ScrollView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="false"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

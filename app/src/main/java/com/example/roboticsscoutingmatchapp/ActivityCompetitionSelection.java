@@ -4,16 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,21 +37,48 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_competition_selection);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Fix status bar overlap for the AppBar and the Navigation Drawer
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.app_bar), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            v.setPadding(0, systemBars.top, 0, 0);
             return insets;
+        });
+
+        ViewCompat.setOnApplyWindowInsetsListener(navigationView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, systemBars.top, 0, 0);
+            return insets;
+        });
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(this, activityDataShowing.class));
+            } else if (id == R.id.nav_scout) {
+                Intent intent = new Intent(this, ActivityCompetitionSelection.class);
+                intent.putExtra("chooseNewCompetition", true);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         });
 
         U u = new U();
         RadioGroup competitionRadioGroup = findViewById(R.id.competition_radio_group);
-//        RadioButton wpiButton = findViewById(R.id.comp_wpi_button);
-//        RadioButton uvmButton = findViewById(R.id.comp_uvm_button);
-//        RadioButton dcmpButton = findViewById(R.id.comp_dcmp);
-//        RadioButton worldsButton = findViewById(R.id.comp_worlds);
-//        RadioButton testButton = findViewById(R.id.comp_test);
         Button saveButton = findViewById(R.id.save_button);
-        Button viewDashboardButton = findViewById(R.id.view_dashboard_button);
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
@@ -117,10 +150,15 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
                 unfilledMessage.show();
             }
         });
+    }
 
-        viewDashboardButton.setOnClickListener((l) -> {
-            Intent i = new Intent(this, activityDataShowing.class);
-            this.startActivity(i);
-        });
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
