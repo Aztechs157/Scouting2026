@@ -65,13 +65,20 @@ public class MatchData {
         this.comments = csvRow[28];
     }
 
-    public double getCalculatedAutoScore() {
-        return autoScored * getAccuracyMultiplier(autoAccuracy) + (autoHang ? 15 : 0);
+    public int getCalculatedAutoScoredWhole() {
+        return (int) Math.round(autoScored * getAccuracyMultiplier(autoAccuracy));
     }
 
+    public int getCalculatedTeleopScoredWhole() {
+        return (int) Math.round(teleopScored * getAccuracyMultiplier(teleopAccuracy));
+    }
+
+    public double getCalculatedAutoScore() {
+        return (double) getCalculatedAutoScoredWhole() + (autoHang ? 15 : 0);
+    }
 
     public double getCalculatedTeleopScore() {
-        return teleopScored * getAccuracyMultiplier(teleopAccuracy) + getClimbPoints();
+        return (double) getCalculatedTeleopScoredWhole() + getClimbPoints();
     }
 
     public double getTotalScore() {

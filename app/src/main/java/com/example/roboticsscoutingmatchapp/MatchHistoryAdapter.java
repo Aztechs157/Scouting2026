@@ -41,7 +41,9 @@ public class MatchHistoryAdapter extends RecyclerView.Adapter<MatchHistoryAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MatchData match = matches.get(position);
         holder.matchNum.setText("M #" + match.matchNum);
-        holder.scoreSummary.setText(String.format("Auto: %d | Tele: %d", match.autoScored, match.teleopScored));
+        holder.scoreSummary.setText(String.format("Auto: %d | Tele: %d", 
+                match.getCalculatedAutoScoredWhole(), 
+                match.getCalculatedTeleopScoredWhole()));
         holder.hangStatus.setText("Climb: " + match.hangStatus);
         holder.scouterName.setText(match.scout);
         
