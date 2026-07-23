@@ -10,8 +10,11 @@
         <item name="colorSecondaryVariant">@color/aztech_yellow_accent</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
         <!-- Customize your theme here. -->
-        <item name="android:background">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/aztech_blue_accent</item>
+        <item name="colorSurface">@color/aztech_blue_accent</item>
+        <item name="android:colorBackground">@color/aztech_blue_accent</item>
     </style>
 </resources>

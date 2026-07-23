@@ -200,7 +200,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="false"
+        android:fitsSystemWindows="true"
+        android:background="@color/aztech_blue"
+        app:itemIconTint="@color/aztech_yellow"
+        app:itemTextColor="@color/aztech_yellow"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu" />
 

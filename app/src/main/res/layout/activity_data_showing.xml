@@ -44,7 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/aztech_blue_accent">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,7 +166,8 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="2dp"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="@color/aztech_blue_accent">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -194,7 +196,8 @@
                         android:layout_weight="1"
                         android:layout_marginHorizontal="2dp"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="@color/aztech_blue_accent">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -223,7 +226,8 @@
                         android:layout_weight="1"
                         android:layout_marginHorizontal="2dp"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="@color/aztech_blue_accent">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -252,7 +256,8 @@
                         android:layout_weight="1"
                         android:layout_marginStart="2dp"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="@color/aztech_blue_accent">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -284,7 +289,8 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/aztech_blue_accent">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -339,7 +345,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="false"
+        android:fitsSystemWindows="true"
+        android:background="@color/aztech_blue"
+        app:itemIconTint="@color/aztech_yellow"
+        app:itemTextColor="@color/aztech_yellow"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu" />
 
