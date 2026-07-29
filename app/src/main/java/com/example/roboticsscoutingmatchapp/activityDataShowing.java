@@ -52,17 +52,23 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Activity for the Data Hub Dashboard.
+ * Aggregates local CSV scouting data to display team trends, averages, and a leaderboard.
+ */
 public class activityDataShowing extends AppCompatActivity {
 
-    private List<MatchData> allMatches = new ArrayList<>();
-    private Set<String> teamNumbers = new HashSet<>();
+    private final List<MatchData> allMatches = new ArrayList<>();
+    private final Set<String> teamNumbers = new HashSet<>();
     private final Set<String> competitions = new HashSet<>();
+    
     private MatchHistoryAdapter adapter;
     private TextView avgAutoText, avgTeleopText, avgPassingText, climbRateText;
     private LineChart scoringChart;
     private HorizontalBarChart leaderboardChart;
     private Spinner compFilterSpinner, metricSpinner;
     private TextView leaderboardPageText;
+    
     private int leaderboardPage = 0;
     private static final int PAGE_SIZE = 5;
 
@@ -72,6 +78,7 @@ public class activityDataShowing extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_data_showing);
 
+        // UI Initialization
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -85,11 +92,13 @@ public class activityDataShowing extends AppCompatActivity {
             return insets;
         });
 
+        // Setup Sidebar Toggle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Handle Sidebar Navigation
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_scout) {
@@ -102,6 +111,7 @@ public class activityDataShowing extends AppCompatActivity {
             return true;
         });
 
+        // Bind UI Components
         avgAutoText = findViewById(R.id.avg_auto_scored);
         avgTeleopText = findViewById(R.id.avg_teleop_scored);
         avgPassingText = findViewById(R.id.avg_passing);
@@ -112,21 +122,21 @@ public class activityDataShowing extends AppCompatActivity {
         metricSpinner = findViewById(R.id.leaderboard_metric_spinner);
         leaderboardPageText = findViewById(R.id.leaderboard_page_text);
 
+        // Leaderboard Pagination
         Button prevButton = findViewById(R.id.prev_leaderboard_button);
         Button nextButton = findViewById(R.id.next_leaderboard_button);
-
         prevButton.setOnClickListener(v -> {
             if (leaderboardPage > 0) {
                 leaderboardPage--;
                 refreshLeaderboard();
             }
         });
-
         nextButton.setOnClickListener(v -> {
             leaderboardPage++;
             refreshLeaderboard();
         });
 
+        // Data Lifecycle: Load -> Setup UI -> Filter
         setupCharts();
         loadLocalData();
         setupDashboard();
@@ -135,7 +145,7 @@ public class activityDataShowing extends AppCompatActivity {
     }
 
     private void setupCharts() {
-        // Line Chart Setup
+        // Configure visual styles for MPAndroidChart components
         scoringChart.getDescription().setEnabled(false);
         scoringChart.setDrawGridBackground(false);
         scoringChart.getAxisRight().setEnabled(false);
@@ -143,7 +153,6 @@ public class activityDataShowing extends AppCompatActivity {
         scoringChart.getLegend().setEnabled(false);
         scoringChart.setNoDataText("Select a team to view scoring trend");
 
-        // Bar Chart Setup
         leaderboardChart.getDescription().setEnabled(false);
         leaderboardChart.setDrawGridBackground(false);
         leaderboardChart.getAxisRight().setEnabled(false);
@@ -160,6 +169,10 @@ public class activityDataShowing extends AppCompatActivity {
         leaderboardChart.setFitBars(true);
     }
 
+    /**
+     * Scans the public Documents directory for match_scouting_*.csv files.
+     * Parses each file into a MatchData object for aggregation.
+     */
     private void loadLocalData() {
         File docDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
         File[] files = docDir.listFiles((dir, name) -> name.startsWith("match_scouting_") && name.endsWith(".csv"));
@@ -170,6 +183,7 @@ public class activityDataShowing extends AppCompatActivity {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line = br.readLine();
                 if (line != null) {
+                    // split with -1 to preserve empty trailing fields (like comments)
                     String[] data = line.split(",", -1);
                     MatchData match = new MatchData(data);
                     if (match.teamNum != null && !match.teamNum.isEmpty()) {
@@ -187,11 +201,13 @@ public class activityDataShowing extends AppCompatActivity {
     }
 
     private void setupDashboard() {
+        // Setup Search/Autocomplete for team selection
         AutoCompleteTextView searchView = findViewById(R.id.team_search_view);
         ArrayAdapter<String> teamAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, new ArrayList<>(teamNumbers));
         searchView.setAdapter(teamAdapter);
 
+        // Setup Match History List
         RecyclerView recyclerView = findViewById(R.id.match_history_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MatchHistoryAdapter(new ArrayList<>(), this::showMatchDetails);
@@ -203,6 +219,9 @@ public class activityDataShowing extends AppCompatActivity {
         });
     }
 
+    /**
+     * Displays a detailed breakdown of a single match in an AlertDialog.
+     */
     private void showMatchDetails(MatchData match) {
         StringBuilder details = new StringBuilder();
         details.append("Scouter: ").append(match.scout).append("\n");
@@ -283,6 +302,9 @@ public class activityDataShowing extends AppCompatActivity {
         displayTopTeams(comp.equals("All Competitions") ? null : comp, metric);
     }
 
+    /**
+     * Calculates and displays the top 5 teams based on the selected metric and competition filter.
+     */
     private void displayTopTeams(String competitionFilter, String metric) {
         Map<String, List<Double>> teamValues = new HashMap<>();
         for (MatchData m : allMatches) {
@@ -293,12 +315,16 @@ public class activityDataShowing extends AppCompatActivity {
                     case "Auto Fuel": val = m.autoScored; break;
                     case "Tele Fuel": val = m.teleopScored; break;
                     case "Passing": val = (m.autoPassed + m.teleopPassed); break;
-                    case "Accuracy %": val = m.getCalculatedTeleopScore() / Math.max(1, m.teleopScored) * 100; break;
+                    case "Accuracy %": 
+                        // Simplified accuracy metric for leaderboard
+                        val = m.getCalculatedTeleopScoredWhole() / Math.max(1.0, m.teleopScored) * 100; 
+                        break;
                 }
                 teamValues.computeIfAbsent(m.teamNum, k -> new ArrayList<>()).add(val);
             }
         }
 
+        // Aggregate by Team Number and Sort Descending
         List<Map.Entry<String, Double>> sortedValues = teamValues.entrySet().stream()
                 .map(entry -> {
                     double avg = entry.getValue().stream().mapToDouble(d -> d).average().orElse(0.0);
@@ -307,6 +333,7 @@ public class activityDataShowing extends AppCompatActivity {
                 .sorted((e1, e2) -> Double.compare(e2.getValue(), e1.getValue()))
                 .collect(Collectors.toList());
 
+        // Handle Pagination
         int start = leaderboardPage * PAGE_SIZE;
         if (start >= sortedValues.size()) {
             if (leaderboardPage > 0) {
@@ -330,7 +357,7 @@ public class activityDataShowing extends AppCompatActivity {
         List<BarEntry> entries = new ArrayList<>();
         List<String> teamLabels = new ArrayList<>();
 
-        // Deep copy and reverse for Horizontal Chart display (highest at top)
+        // Reverse for Horizontal Chart display (highest at top)
         List<Map.Entry<String, Double>> displayData = new ArrayList<>(data);
         Collections.reverse(displayData);
 
@@ -352,6 +379,9 @@ public class activityDataShowing extends AppCompatActivity {
         leaderboardChart.invalidate();
     }
 
+    /**
+     * Filters all data for a specific team and updates the summary metrics and trend chart.
+     */
     private void updateDashboard(String teamNum) {
         List<MatchData> teamMatches = new ArrayList<>();
         double totalAuto = 0;
@@ -365,6 +395,7 @@ public class activityDataShowing extends AppCompatActivity {
             }
         }
         
+        // Sort matches chronologically by match number
         teamMatches.sort((m1, m2) -> {
             try {
                 return Integer.compare(Integer.parseInt(m1.matchNum), Integer.parseInt(m2.matchNum));
@@ -374,8 +405,8 @@ public class activityDataShowing extends AppCompatActivity {
         });
 
         for (MatchData m : teamMatches) {
-            totalAuto += m.getCalculatedAutoScore();
-            totalTeleop += m.getCalculatedTeleopScore();
+            totalAuto += m.getCalculatedAutoScoredWhole();
+            totalTeleop += m.getCalculatedTeleopScoredWhole();
             totalPassing += (m.autoPassed + m.teleopPassed);
             if (m.hangStatus != null && !m.hangStatus.equalsIgnoreCase("None") && !m.hangStatus.equalsIgnoreCase("Nothing")) {
                 climbs++;
@@ -389,6 +420,7 @@ public class activityDataShowing extends AppCompatActivity {
         double avgPassing = totalPassing / teamMatches.size();
         double climbRate = (double) climbs / teamMatches.size() * 100;
 
+        // Update Summary Cards
         avgAutoText.setText(String.format(Locale.getDefault(), "%.1f", avgAuto));
         avgTeleopText.setText(String.format(Locale.getDefault(), "%.1f", avgTele));
         avgPassingText.setText(String.format(Locale.getDefault(), "%.1f", avgPassing));
@@ -398,6 +430,9 @@ public class activityDataShowing extends AppCompatActivity {
         adapter.updateData(teamMatches);
     }
 
+    /**
+     * Updates the scoring trend line chart with the robot's match-by-match total score.
+     */
     private void updateTrendChart(List<MatchData> teamMatches) {
         List<Entry> entries = new ArrayList<>();
         List<String> labels = new ArrayList<>();

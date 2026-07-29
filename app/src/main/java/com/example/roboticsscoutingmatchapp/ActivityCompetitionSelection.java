@@ -30,6 +30,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 
+/**
+ * Launcher activity for the app. Handles competition selection and data persistence checks.
+ * Serves as the home screen with navigation to the Data Dashboard.
+ */
 public class ActivityCompetitionSelection extends AppCompatActivity {
 
     @Override
@@ -38,13 +42,14 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_competition_selection);
 
+        // Sidebar/Navigation Drawer Setup
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        // Fix status bar overlap for the AppBar and the Navigation Drawer
+        // Adjust for system status bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.app_bar), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(0, systemBars.top, 0, 0);
@@ -56,11 +61,14 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Centralized navigation logic
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_dashboard) {
+                // Open Data Dashboard
                 startActivity(new Intent(this, activityDataShowing.class));
             } else if (id == R.id.nav_scout) {
+                // Reset/Restart Scouting flow
                 Intent intent = new Intent(this, ActivityCompetitionSelection.class);
                 intent.putExtra("chooseNewCompetition", true);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -86,6 +94,7 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
             scoutName = "";
         }
 
+        // Persistence check: If a competition was already selected today, skip this screen
         final String FILENAME = "matchAndDate";
         File file = new File(this.getFilesDir(), FILENAME);
         Calendar now = Calendar.getInstance();
@@ -104,14 +113,15 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
                     dateAndMatchString += reader.readLine();
                     reader.close();
                 } catch (FileNotFoundException e) {
-                    Log.e("File Not Found Exception", e.toString());
+                    Log.e("ActivityComp", "Persisted file not found", e);
                 } catch (IOException e) {
-                    Log.e("IOException", e.toString());
+                    Log.e("ActivityComp", "Read error", e);
                 }
             }
             if (!dateAndMatchString.isEmpty()) {
                 String fileDate = u.untilNextComma(dateAndMatchString);
                 if (fileDate.equals(currentDate)) {
+                    // Fast-forward to scouting if date matches
                     Intent i = new Intent(this, activityPreMatch.class);
                     i.putExtra("competition", u.nextCommaOn(dateAndMatchString));
                     i.putExtra("scoutName", scoutName);
@@ -126,14 +136,15 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
             if(u.getData(competitionRadioGroup).isEmpty()){
                 response = "Please choose current competition to be scouting";
             }else{
+                // Save selection locally
                 String fileContents = finalCurrentDate + "," + u.getData(competitionRadioGroup);
                 try(FileOutputStream fos = this.openFileOutput(FILENAME, Context.MODE_PRIVATE)){
                     fos.write(fileContents.getBytes());
-                } catch(FileNotFoundException e){
-                    Log.e("File Not Found Exception", e.toString());
                 } catch(IOException e){
-                    Log.e("IO Exception", e.toString());
+                    Log.e("ActivityComp", "Write error", e);
                 }
+                
+                // Move to Pre-Match
                 Intent i = new Intent(this, activityPreMatch.class);
                 i.putExtra("competition", u.getData(competitionRadioGroup));
                 i.putExtra("scoutName", scoutName);
@@ -148,6 +159,7 @@ public class ActivityCompetitionSelection extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        // Handle Sidebar Drawer if open
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);

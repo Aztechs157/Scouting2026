@@ -21,17 +21,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+/**
+ * Activity for collecting Pre-Match data (Scouter name, match #, team info).
+ * Updated for the 2026 REBUILT game pieces (Fuel).
+ */
 public class activityPreMatch extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Defines an object for the utility file because of weird compat with static methods
         U u = new U();
 
-        /*
-         Checks for if there is any data sent over with the intent when switching to current
-         activity, save strings will be compiled and saved as csv in final activity page
-         */
+        // Retrieve existing data strings passed through Intent extras for state persistence
         String preMatchSaveString, autoSaveString,
                 teleOpSaveString, postMatchSaveString, competitionString, scoutNameString;
         Bundle extras = getIntent().getExtras();
@@ -55,9 +55,9 @@ public class activityPreMatch extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pre_match);
 
+        // Sidebar/Navigation Setup
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -87,18 +87,23 @@ public class activityPreMatch extends AppCompatActivity {
             return true;
         });
 
-        // Defining all the relevant components in the activity
+        // UI Component Binding
         EditText scoutName = findViewById(R.id.scout_name);
         EditText matchNumber = findViewById(R.id.match_number);
         EditText teamNumber = findViewById(R.id.team_number);
         RadioGroup teamColorRadioGroup = findViewById(R.id.team_color_radio_group);
+        
+        // REBUILT 2026 Fix: Resource ID changed from checkBox_preloaded_coral to fuel
         CheckBox preloadedFuel = findViewById(R.id.checkBox_preloaded_fuel);
+        
         Button saveButton = findViewById(R.id.save_button);
         Button backButton = findViewById(R.id.back_button);
+        
         if(!scoutNameString.isEmpty()){
             scoutName.setText(scoutNameString);
         }
 
+        // Parse backward-passed data strings to restore UI state
         if(!preMatchSaveString.isEmpty()){
             competitionString = u.untilNextComma(preMatchSaveString);
             preMatchSaveString = u.nextCommaOn(preMatchSaveString); // remove competition
@@ -120,16 +125,14 @@ public class activityPreMatch extends AppCompatActivity {
 
         }
 
-        // Defines a toast (pop-up) to be used when a field is left unfilled
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
         String finalCompetitionString = competitionString;
         saveButton.setOnClickListener((l) -> {
-            // Check if all fields are full
-//            findViewById(R.id.scroll_view);
             String response = "";
 
+            // Validation logic
             if(u.getData(scoutName).isEmpty()){
                 response = getResources().getString(R.string.prompt_scout_name) + " " + getResources().getString(R.string.is_empty_identifier);
             }else if(u.getData(matchNumber).isEmpty()){
@@ -139,10 +142,10 @@ public class activityPreMatch extends AppCompatActivity {
             }else if(u.getData(teamColorRadioGroup).isEmpty()){
                 response = "Please choose a team color";
             }else{
-                // Utilizes "savestrings"
+                // Serialize pre-match info into a comma-separated string for passing between activities
                 Intent i = new Intent(this, activityAutonomous.class);
                 String preMatchInfo = "";
-                preMatchInfo += finalCompetitionString + ","; //TODO: Add competition
+                preMatchInfo += finalCompetitionString + ",";
                 preMatchInfo += u.DATA_VERSION + ",";
                 preMatchInfo += u.stripText(u.getData(scoutName), u.DELIMITER_AND_WHITESPACE) + ",";
                 preMatchInfo += u.stripText(u.getData(teamNumber)) + ",";
