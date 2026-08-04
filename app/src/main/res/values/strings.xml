@@ -161,6 +161,7 @@
     <string name="heavy_defense">Heavy Defense</string>
 
     <string name="button_save">Save</string>
+    <string name="button_dashboard">View Dashboard</string>
 
     <!--  human player  -->
     <string name="human_player_title">Human Player Page!</string>
@@ -176,5 +177,7 @@
     <string name="processor">Processor</string>
 
     <string name="data">Data</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

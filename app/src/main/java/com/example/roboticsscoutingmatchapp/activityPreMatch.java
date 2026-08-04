@@ -10,22 +10,28 @@ import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
+
+/**
+ * Activity for collecting Pre-Match data (Scouter name, match #, team info).
+ * Updated for the 2026 REBUILT game pieces (Fuel).
+ */
 public class activityPreMatch extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Defines an object for the utility file because of weird compat with static methods
         U u = new U();
 
-        /*
-         Checks for if there is any data sent over with the intent when switching to current
-         activity, save strings will be compiled and saved as csv in final activity page
-         */
+        // Retrieve existing data strings passed through Intent extras for state persistence
         String preMatchSaveString, autoSaveString,
                 teleOpSaveString, postMatchSaveString, competitionString, scoutNameString;
         Bundle extras = getIntent().getExtras();
@@ -45,28 +51,59 @@ public class activityPreMatch extends AppCompatActivity {
             scoutNameString = "";
         }
 
-        // Checks for insets changing (screen rotation) -- Auto-generated
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pre_match);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+
+        // Sidebar/Navigation Setup
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Fix status bar overlap for the AppBar and the Navigation Drawer
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.app_bar), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            v.setPadding(0, systemBars.top, 0, 0);
             return insets;
         });
 
-        // Defining all the relevant components in the activity
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_scout) {
+                Intent intent = new Intent(this, ActivityCompetitionSelection.class);
+                intent.putExtra("chooseNewCompetition", true);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(this, activityDataShowing.class));
+            }
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        // UI Component Binding
         EditText scoutName = findViewById(R.id.scout_name);
         EditText matchNumber = findViewById(R.id.match_number);
         EditText teamNumber = findViewById(R.id.team_number);
         RadioGroup teamColorRadioGroup = findViewById(R.id.team_color_radio_group);
+        
+        // REBUILT 2026 Fix: Resource ID changed from checkBox_preloaded_coral to fuel
         CheckBox preloadedFuel = findViewById(R.id.checkBox_preloaded_fuel);
+        
         Button saveButton = findViewById(R.id.save_button);
         Button backButton = findViewById(R.id.back_button);
+        
         if(!scoutNameString.isEmpty()){
             scoutName.setText(scoutNameString);
         }
 
+        // Parse backward-passed data strings to restore UI state
         if(!preMatchSaveString.isEmpty()){
             competitionString = u.untilNextComma(preMatchSaveString);
             preMatchSaveString = u.nextCommaOn(preMatchSaveString); // remove competition
@@ -88,16 +125,14 @@ public class activityPreMatch extends AppCompatActivity {
 
         }
 
-        // Defines a toast (pop-up) to be used when a field is left unfilled
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
         String finalCompetitionString = competitionString;
         saveButton.setOnClickListener((l) -> {
-            // Check if all fields are full
-//            findViewById(R.id.scroll_view);
             String response = "";
 
+            // Validation logic
             if(u.getData(scoutName).isEmpty()){
                 response = getResources().getString(R.string.prompt_scout_name) + " " + getResources().getString(R.string.is_empty_identifier);
             }else if(u.getData(matchNumber).isEmpty()){
@@ -107,10 +142,10 @@ public class activityPreMatch extends AppCompatActivity {
             }else if(u.getData(teamColorRadioGroup).isEmpty()){
                 response = "Please choose a team color";
             }else{
-                // Utilizes "savestrings"
+                // Serialize pre-match info into a comma-separated string for passing between activities
                 Intent i = new Intent(this, activityAutonomous.class);
                 String preMatchInfo = "";
-                preMatchInfo += finalCompetitionString + ","; //TODO: Add competition
+                preMatchInfo += finalCompetitionString + ",";
                 preMatchInfo += u.DATA_VERSION + ",";
                 preMatchInfo += u.stripText(u.getData(scoutName), u.DELIMITER_AND_WHITESPACE) + ",";
                 preMatchInfo += u.stripText(u.getData(teamNumber)) + ",";
@@ -138,5 +173,15 @@ public class activityPreMatch extends AppCompatActivity {
            this.startActivity(i);
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

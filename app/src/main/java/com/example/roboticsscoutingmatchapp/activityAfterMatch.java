@@ -22,23 +22,26 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Activity for collecting Post-Match qualitative data (Field navigation, robot state, stop reason).
+ * Finalizes and saves the scouting report as a CSV file.
+ */
 public class activityAfterMatch extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // Default code start
+        super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_after_match);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        }); // Default code end
+        });
 
-        U u = new U(); // defines new utilities object to be used
+        U u = new U();
 
-        // *---Defines all the components on the current page as variables---*
-
+        // 2026 REBUILT Metric Collection
         CheckBox overBump = findViewById(R.id.over_bump);
         CheckBox underTrench = findViewById(R.id.under_trench);
         CheckBox playedDefense = findViewById(R.id.played_defense);
@@ -67,28 +70,30 @@ public class activityAfterMatch extends AppCompatActivity {
         EditText finalText = findViewById(R.id.End_of_app_text);
         Button saveButton = findViewById(R.id.save_button);
         Button backButton = findViewById(R.id.back_button);
-        Toast unfilledMessage = new Toast(this); // Creates a Toast (pop-up message object)
-        unfilledMessage.setDuration(Toast.LENGTH_SHORT); // Sets it to only be angry a short while
+        
+        Toast unfilledMessage = new Toast(this);
+        unfilledMessage.setDuration(Toast.LENGTH_SHORT);
 
-        String preMatchSaveString, autoSaveString,  // Define savestring String objects
+        // Load intent data for UI state persistence
+        String preMatchSaveString, autoSaveString,
                 teleOpSaveString, postMatchSaveString;
-        Bundle extras = getIntent().getExtras(); // Gets the savestrings and stores them to extras
-        if(extras != null){ // If savestrings exist, set individual strings to values
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
             preMatchSaveString = extras.getString("preMatch", "");
             autoSaveString = extras.getString("auto", "");
             teleOpSaveString = extras.getString("teleOp", "");
             postMatchSaveString = extras.getString("postMatch", "");
-        } else { // If savestrings don't exist, no value
+        } else {
             preMatchSaveString = "";
             autoSaveString = "";
             teleOpSaveString = "";
             postMatchSaveString = "";
         }
 
-        if(!postMatchSaveString.isEmpty()){ // Sets all the components to the values within the savestring
-            overBump.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString))); // Sets the value to the parsed value in the savestring
-            postMatchSaveString = u.nextCommaOn(postMatchSaveString); // removes the value from the savestring
-            // So on an so forth
+        // Parse backward-passed post-match data strings to restore UI state
+        if(!postMatchSaveString.isEmpty()){
+            overBump.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
+            postMatchSaveString = u.nextCommaOn(postMatchSaveString);
             underTrench.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
             postMatchSaveString = u.nextCommaOn(postMatchSaveString);
             playedDefense.setChecked(Boolean.parseBoolean(u.untilNextComma(postMatchSaveString)));
@@ -113,35 +118,19 @@ public class activityAfterMatch extends AppCompatActivity {
 
             String stopReasonString = u.untilNextComma(postMatchSaveString);
             switch (stopReasonString) {
-                case "Died":
-                    diedButton.toggle();
-                    break;
-                case "Tipped":
-                    tippedButton.toggle();
-                    break;
-                case "Physically Broke":
-                    physicallyBrokeButton.toggle();
-                    break;
-                case "E-stopped":
-                    eStoppedButton.toggle();
-                    break;
-                case "Not Stopped":
-                    notStoppedButton.toggle();
-                    break;
+                case "Died": diedButton.toggle(); break;
+                case "Tipped": tippedButton.toggle(); break;
+                case "Physically Broke": physicallyBrokeButton.toggle(); break;
+                case "E-stopped": eStoppedButton.toggle(); break;
+                case "Not Stopped": notStoppedButton.toggle(); break;
             }
             postMatchSaveString = u.nextCommaOn(postMatchSaveString);
 
             String teamRank = u.untilNextComma(postMatchSaveString);
             switch(teamRank){
-                case "Rank 1":
-                    rank1Button.toggle();
-                    break;
-                case "Rank 2":
-                    rank2Button.toggle();
-                    break;
-                case "Rank 3":
-                    rank3Button.toggle();
-                    break;
+                case "Rank 1": rank1Button.toggle(); break;
+                case "Rank 2": rank2Button.toggle(); break;
+                case "Rank 3": rank3Button.toggle(); break;
             }
             postMatchSaveString = u.nextCommaOn(postMatchSaveString);
 
@@ -149,12 +138,11 @@ public class activityAfterMatch extends AppCompatActivity {
             postMatchSaveString = u.nextCommaOn(postMatchSaveString);
         }
 
-        backButton.setOnClickListener((l)->{ // Sets current savestring to current values of components
-            // Because it's the back button, these values can have no value
+        backButton.setOnClickListener((l)->{
             String afterMatchInfo = "";
-
-            afterMatchInfo += u.getData(underTrench) + ",";
+            // Maintain data integrity for the 29-column schema even on back-nav
             afterMatchInfo += u.getData(overBump) + ",";
+            afterMatchInfo += u.getData(underTrench) + ",";
             afterMatchInfo += u.getData(playedDefense) + ",";
             afterMatchInfo += u.getData(collectedFuel) + ",";
             afterMatchInfo += u.getData(passedFuel) + ",";
@@ -170,20 +158,18 @@ public class activityAfterMatch extends AppCompatActivity {
             i.putExtra("auto", autoSaveString);
             i.putExtra("teleOp", teleOpSaveString);
             i.putExtra("postMatch", afterMatchInfo);
-
             this.startActivity(i);
         });
 
-        saveButton.setOnClickListener((l)->{ // Sets current savestring to current component values
-            // Checks that components that need to be filled in are filled in
+        saveButton.setOnClickListener((l)->{
             String response = "";
-            if(u.getData(defenseReceivedGroup).isEmpty()) // If a component is not filled in
-                response = "Please fill in defense received"; // Sets the toast message to error message
+            if(u.getData(defenseReceivedGroup).isEmpty())
+                response = "Please fill in defense received";
             else if(u.getData(rankGroup).isEmpty())
                 response = "Please fill in rank";
             else if(u.getData(stopReasonGroup).isEmpty())
                 response = "Please fill in stop reason";
-            else{ // If nothing is wrong, keep filling everything in
+            else{
                 String postMatchInfo = "";
                 postMatchInfo += u.getData(overBump) + ",";
                 postMatchInfo += u.getData(underTrench) + ",";
@@ -197,44 +183,35 @@ public class activityAfterMatch extends AppCompatActivity {
                 postMatchInfo += u.getData(rankGroup) + ",";
                 postMatchInfo += u.stripText(u.getData(finalText), u.DELIMITER) + ",";
 
-                // Competition Location | Save Version | Scout Name | Team # | Team Color |
-                // Match Number | Preloaded coral ||
-                // Filename format: "match_scouting_" + [team_number] + [match number]
+                // Compile final CSV string and write to external storage (Documents directory)
+                // Filename format: match_scouting_[comp]_[team]_[match].csv
                 String teamNumber = u.untilNextComma(u.nextCommaOn(u.nextCommaOn(u.nextCommaOn(preMatchSaveString))));
                 String matchNumber = u.untilNextComma(u.nextCommaOn(u.nextCommaOn(u.nextCommaOn(u.nextCommaOn(u.nextCommaOn(preMatchSaveString))))));
                 String competitionLocation = u.untilNextComma(preMatchSaveString);
                 String scoutName = u.untilNextComma(u.nextCommaOn(u.nextCommaOn(preMatchSaveString)));
                 String fileName = "match_scouting_"+ competitionLocation + "_" + teamNumber + "_" + matchNumber + ".csv";
-                Log.d("File Name: ", fileName);
 
                 try {
                     File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
                     if (!file.exists()) {
-                        boolean fileCreated = file.createNewFile();
-                        if(!fileCreated) {
-                            Toast.makeText(this, "File " + fileName + " has not been created", Toast.LENGTH_SHORT).show();
-                            Log.d("File written: ", "File not created");
-                        }else {
-                            Toast.makeText(this, "File " + fileName + " has been created", Toast.LENGTH_SHORT).show();
-                            Log.d("File written: ", "File created");
-                        }
-                    }else{
-                        Log.d("File already existed", "File already existed");
+                        file.createNewFile();
                     }
 
                     FileWriter fw = new FileWriter(file.getAbsoluteFile());
                     BufferedWriter bw = new BufferedWriter(fw);
-
+                    
+                    // Final Write: Pre + Auto + Tele + Post = 29 Columns
                     bw.write(preMatchSaveString);
                     bw.write(autoSaveString);
                     bw.write(teleOpSaveString);
                     bw.write(postMatchInfo);
                     bw.flush();
                     bw.close();
+                    Toast.makeText(this, "File " + fileName + " Saved", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
-                    Log.d("Error thrown:", "+==========+Error Thrown+==========+");
-                    Log.getStackTraceString(e);
+                    Log.e("activityAfterMatch", "File save failed", e);
                 }
+                
                 Intent i = new Intent(this, ActivityCompetitionSelection.class);
                 i.putExtra("scoutName", scoutName);
                 this.startActivity(i);
