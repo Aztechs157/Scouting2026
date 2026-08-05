@@ -82,6 +82,14 @@
 
 
 
+    <string-array name="accuracy_array">
+        <item>Less Than 10%</item>
+        <item>25%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>More Than 95%</item>
+    </string-array>
+
     <string name="shots_fired">Fuel Shot</string>
     <string name="accurate_shots_fired">Accuracy%</string>
     <string-array name="number_fuel_shot">

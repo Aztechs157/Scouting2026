@@ -238,6 +238,6 @@ public class U extends AppCompatActivity{
     }
 
     public String getData(Spinner choice) {
-        return choice.toString();
+        return choice.getSelectedItem().toString();
     }
 }

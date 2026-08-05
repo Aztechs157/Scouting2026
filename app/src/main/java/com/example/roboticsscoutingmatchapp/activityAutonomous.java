@@ -91,7 +91,7 @@ public class activityAutonomous extends AppCompatActivity {
         EditText FSField = findViewById(R.id.edit_text_fs);
         EditText FPField = findViewById(R.id.edit_text_fp);
 
-        Spinner accuracyChoice = (Spinner) findViewById(R.id.accuracy_spinner);
+        Spinner accuracyChoice = findViewById(R.id.accuracy_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.accuracy_estimate,
@@ -154,9 +154,6 @@ public class activityAutonomous extends AppCompatActivity {
         // Can be simplified. Not now.
 
         backButton.setOnClickListener((l)-> {
-            // Starting Position | Left starting Position | #ACL1 | #ACL2 | #ACL3 | #ACL4 |
-            // #SCL1 | #SCL2 | #SCL3 | #SCL4 | #Barge attempted | #barge scored | 
-            // #processor attempted | #processor scored |#algae removed ||
             String autoInfo = "";
             autoInfo += ","; // Starting position # end
             autoInfo += u.getData(positionGroup1);
