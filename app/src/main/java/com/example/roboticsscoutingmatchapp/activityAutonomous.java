@@ -59,10 +59,13 @@ public class activityAutonomous extends AppCompatActivity {
             return insets;
         });
 
-        RadioGroup positionGroup1 = findViewById(R.id.staring_position_radio_group1);
-        RadioButton position1Button = findViewById(R.id.Position_1);
-        RadioButton position2Button = findViewById(R.id.Position_2);
-        RadioButton position3Button = findViewById(R.id.Position_3);
+        Spinner positionChoice = findViewById(R.id.position_spinner);
+        ArrayAdapter<CharSequence> posAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.position_array,
+                android.R.layout.simple_spinner_item);
+        posAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        positionChoice.setAdapter(posAdapter);
 
         Button FS1plus = findViewById(R.id.up_count_button_fs1);
         Button FS5plus = findViewById(R.id.up_count_button_fs5);
@@ -114,17 +117,6 @@ public class activityAutonomous extends AppCompatActivity {
             // #processor attempted | #processor scored |#algae removed ||
             String position = u.untilNextComma(autoSaveString);
 //            Log.d(position, position);
-            switch (position){
-                case "Position 1":
-                    position1Button.toggle();
-                    break;
-                case "Position 2":
-                    position2Button.toggle();
-                    break;
-                case "Position 3":
-                    position3Button.toggle();
-                    break;
-            }
             FSField.setText(u.untilNextComma(autoSaveString));
             autoSaveString = u.nextCommaOn(autoSaveString);
         }
@@ -156,7 +148,7 @@ public class activityAutonomous extends AppCompatActivity {
         backButton.setOnClickListener((l)-> {
             String autoInfo = "";
             autoInfo += ","; // Starting position # end
-            autoInfo += u.getData(positionGroup1);
+            autoInfo += u.getData(positionChoice);
 
             autoInfo += u.getData(FSField);
             autoInfo += u.getData(accuracyChoice);
@@ -176,15 +168,10 @@ public class activityAutonomous extends AppCompatActivity {
         saveButton.setOnClickListener((l)-> {
             String response = "";
 
-
-            if((u.getData(positionGroup1).isEmpty()))
-                response = "Please fill position";
-            else{
-
                 String autoInfo = "";
                 autoInfo += ","; // Starting position # end
 
-                autoInfo += u.getData(positionGroup1) + ",";
+                autoInfo += u.getData(positionChoice) + ",";
 
                 autoInfo += u.getData(FSField) + ",";
                 autoInfo += u.getData(accuracyChoice) + ",";
@@ -200,7 +187,7 @@ public class activityAutonomous extends AppCompatActivity {
                 i.putExtra("postMatch", postMatchSaveString);
 
                 this.startActivity(i);
-            }
+
 
             if(!response.isEmpty()){
                 unfilledMessage.setText(response);

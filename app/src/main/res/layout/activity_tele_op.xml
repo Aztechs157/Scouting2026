@@ -406,40 +406,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <RadioGroup
-                    android:id="@+id/endgame_location"
+                <Spinner
+                    android:id="@+id/climbStatus"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:showDividers="middle" >
-
-                    <RadioButton
-                        android:id="@+id/level1_climb"
-                        android:layout_width="110dp"
-                        android:layout_height="match_parent"
-                        android:text="@string/level1_climb"
-                        android:textSize="22sp" />
-
-                    <RadioButton
-                        android:id="@+id/level2_climb"
-                        android:layout_width="110dp"
-                        android:layout_height="match_parent"
-                        android:text="@string/level2_climb"
-                        android:textSize="22sp" />
-                    <RadioButton
-                        android:id="@+id/level3_climb"
-                        android:layout_width="110dp"
-                        android:layout_height="match_parent"
-                        android:text="@string/level3_climb"
-                        android:textSize="22sp" />
-                    <RadioButton
-                        android:id="@+id/nothing"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="22sp"
-                        android:text="@string/nothing"/>
-                </RadioGroup>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
 <!--            if hang time (0s 10s 15s 20s 25s)-->
@@ -459,53 +429,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <RadioGroup
-                    android:id="@+id/endgame_time"
+                <Spinner
+                    android:id="@+id/endgameTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:divider="@drawable/horizontal_padding_small"
-                    android:showDividers="middle" >
-
-                    <RadioButton
-                        android:id="@+id/twenty_five"
-                        android:layout_height="match_parent"
-                        android:layout_width="wrap_content"
-                        android:text="@string/twenty_five"
-                        android:textSize="22sp" />
-                    <RadioButton
-                        android:id="@+id/twenty"
-                        android:layout_height="match_parent"
-                        android:layout_width="wrap_content"
-                        android:text="@string/twenty"
-                        android:textSize="22sp"
-                        />
-                    <RadioButton
-                        android:id="@+id/fifteen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="22sp"
-                        android:text="@string/fifteen"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/ten"
-                        android:textSize="22sp"
-                        android:text="@string/ten"/>
-                    <RadioButton
-                        android:id="@+id/five"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="22sp"
-                        android:text="@string/five"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/zero"
-                        android:textSize="22sp"
-                        android:text="@string/number_tried"/>
-                </RadioGroup>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
 
@@ -529,40 +456,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RadioGroup
+                <Spinner
                     android:id="@+id/accuracy_position"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:showDividers="middle" >
-
-                    <RadioButton
-                        android:id="@+id/pac_manning"
-                        android:layout_height="match_parent"
-                        android:layout_width="wrap_content"
-                        android:text="@string/pac_manning"
-                        android:textSize="22sp" />
-                    <RadioButton
-                        android:id="@+id/stand_still"
-                        android:layout_height="match_parent"
-                        android:layout_width="wrap_content"
-                        android:text="@string/stand_still"
-                        android:textSize="22sp"
-                        />
-                    <RadioButton
-                        android:id="@+id/no_difference"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="22sp"
-                        android:text="@string/no_difference"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/bad_accuracy"
-                        android:textSize="22sp"
-                        android:text="@string/bad_accuracy"/>
-                </RadioGroup>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 <!--            button save and next -->
 

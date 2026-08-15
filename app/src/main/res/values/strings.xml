@@ -68,19 +68,18 @@
 
     <string name="prompt_starting_position">Starting Position</string>
 
-    <string name="position1">Position 1</string>
-    <string name="position2">Position 2</string>
-    <string name="position3">Position 3</string>
-    <string name="position4">Position 4</string>
-    <string name="position5">Position 5</string>
-    <string name="position6">Position 6</string>
+    <string-array name="position_array">
+        <item>Position 1</item>
+        <item>Position 2</item>
+        <item>Position 3</item>
+    </string-array>
+
+    <string name="endgame_action">Climb Status?</string>
 
     <string name="scoring">Scoring</string>
     <string name="passing">Passing</string>
 
     <string name="auto_hang">Did the robot hang?</string>
-
-
 
     <string-array name="accuracy_array">
         <item>Less Than 10%</item>
@@ -122,39 +121,13 @@
         <item>Very Accurate</item>
     </string-array>
 
-    <string name="took_from_left">Taken from left human player station</string>
-    <string name="took_from_right">Taken from left human player station</string>
+    <string-array name="climb_status_dropdown">
+        <item>Did Not Climb</item>
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
+    </string-array>
 
-    <string name="level1">L1</string>
-    <string name="level2">L2</string>
-    <string name="level3">L3</string>
-    <string name="level4">L4</string>
-
-    <string name="Cycle1">Cycle 1</string>
-    <string name="Cycle2">Cycle 2</string>
-    <string name="Cycle3">Cycle 3</string>
-    <string name="Cycle4">Cycle 4</string>
-    <string name="Cycle5">Cycle 5</string>
-
-    <string name="attempted_coral">Attempted Coral</string>
-    <string name="scored_coral">Scored Coral</string>
-    <string name="algae">Algae</string>
-
-    <string name="attempted_coral_lvl1">Attempted Coral Lvl 1</string>
-    <string name="scored_coral_lvl1">Scored Coral Lvl 1</string>
-
-    <string name="attempted_coral_lvl2">Attempted Coral Lvl 2</string>
-    <string name="scored_coral_lvl2">Scored Coral Lvl 2</string>
-
-    <string name="attempted_coral_lvl3">Attempted Coral Lvl 3</string>
-    <string name="scored_coral_lvl3">Scored Coral Lvl 3</string>
-
-    <string name="attempted_coral_lvl4">Attempted Coral Lvl 4</string>
-    <string name="scored_coral_lvl4">Scored Coral Lvl 4</string>
-
-    <string name="attempted_algae">Attempted Algae</string>
-    <string name="scored_algae">Scored Algae</string>
-    <string name="removed_algae">Removed Algae</string>
     <string name="number_tried">0</string>
     <string name="counter_up">+</string>
     <string name="counter_down">-</string>
@@ -168,34 +141,22 @@
     <!--    tele op -->
     <string name="header3">Teleop</string>
 
-    <string name="algae_processor_attempted">Attempted Processor</string>
-    <string name="algae_processor_scored">Scored Processor</string>
-
-    <string name="algae_barge_attempted">Attempted Barge</string>
-    <string name="algae_barge_scored">Scored Barge</string>
-
-    <string name="endgame_action">Climb Status?</string>
-    <string name="level1_climb">Level 1</string>
-    <string name="level2_climb">Level 2</string>
-    <string name="level3_climb">Level 3</string>
-    <string name="park">Park</string>
-    <string name="nothing">None</string>
-
     <string name="endgame_time">How much time did they hang with?</string>
-    <string name="twenty_five">25</string>
-    <string name="twenty">20</string>
-    <string name="fifteen">15</string>
-    <string name="ten">10</string>
-    <string name="five">5</string>
+    <string-array name="time_to_hang">
+        <item>25</item>
+        <item>20</item>
+        <item>15</item>
+        <item>10</item>
+        <item>5</item>
+        <item>0</item>
+    </string-array>
 
-    <string name="pieces_pickup">What pieces could the robot pickup?</string>
-    <string name="pickup_coral">Coral</string>/.
-    <string name="pickup_algae">Algae</string>
-
-    <string name="pac_manning">When moving</string>
-    <string name="stand_still">When unmoving</string>
-    <string name="no_difference">About the same</string>
-    <string name="bad_accuracy">Consistently bad accuracy</string>
+    <string-array name="accuracy_position">
+        <item>When Moving</item>
+        <item>When Unmoving</item>
+        <item>About The Same</item>
+        <item>Consistently Bad Accuracy</item>
+    </string-array>
 
     <string name="best_accuracy">When did the robot have the best accuracy?</string>
 
@@ -209,7 +170,6 @@
     <string name="bump">Over the bump</string>
     <string name="trench">Through the trench</string>
 
-    <string name="how_pick_ip_coral">How did the robot pick up the coral?</string>
     <string name="floor_intake">Floor intake</string>
     <string name="human_player_intake">Human player station</string>
 
@@ -242,16 +202,6 @@
 
     <!--  human player  -->
     <string name="human_player_title">Human Player Page!</string>
-
-
-    <string name="attempted_barge">Attempted Barge</string>
-    <string name="scored_barge">Scored Barge</string>
-    <string name="thrown_back">Thrown Back into Field</string>
-
-    <string name="attempted">Att.</string>
-    <string name="scored">Scor.</string>
-    <string name="barge">Barge</string>
-    <string name="processor">Processor</string>
 
     <string name="data">Data</string>
 

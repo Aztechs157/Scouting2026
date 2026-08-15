@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -87,25 +84,29 @@ public class activityTeleOp extends AppCompatActivity {
         Button FP15minus = findViewById(R.id.down_count_button_fp15);
         Button FP20minus = findViewById(R.id.down_count_button_fp20);
 
-        RadioGroup parkRadioGroup = findViewById(R.id.endgame_location); // Endgame RadioGroup
-        RadioButton level1Button = findViewById(R.id.level1_climb);
-        RadioButton level2Button = findViewById(R.id.level2_climb);
-        RadioButton level3Button = findViewById(R.id.level3_climb);
+        Spinner climbStatus = findViewById(R.id.climbStatus);
+        ArrayAdapter<CharSequence> climbAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.climb_status_dropdown,
+                android.R.layout.simple_spinner_item);
+        climbAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        climbStatus.setAdapter(climbAdapter);
 
-        RadioGroup accuracyRadioGroup = findViewById(R.id.accuracy_position); // Endgame RadioGroup
-        RadioButton pacManButton = findViewById(R.id.pac_manning);
-        RadioButton standStillButton = findViewById(R.id.stand_still);
-        RadioButton noDifferenceButton = findViewById(R.id.no_difference);
-        RadioButton badAccuracyButton = findViewById(R.id.bad_accuracy);
+        Spinner accuracyPosition = findViewById(R.id.accuracy_position);
+        ArrayAdapter<CharSequence> accPosAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.accuracy_position,
+                android.R.layout.simple_spinner_item);
+        accPosAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accuracyPosition.setAdapter(accPosAdapter);
 
-        RadioButton noneButton = findViewById(R.id.nothing);
-        RadioGroup endgameTimeGroup = findViewById(R.id.endgame_time);
-        RadioButton twentyFiveButton = findViewById(R.id.twenty_five);
-        RadioButton twentyButton = findViewById(R.id.twenty);
-        RadioButton fifteenButton = findViewById(R.id.fifteen);
-        RadioButton tenButton = findViewById(R.id.ten);
-        RadioButton fiveButton = findViewById(R.id.five);
-        RadioButton zeroButton = findViewById(R.id.zero);
+        Spinner climbTime = findViewById(R.id.endgameTime);
+        ArrayAdapter<CharSequence> climbTimeAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.time_to_hang,
+                android.R.layout.simple_spinner_item);
+        climbTimeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        climbTime.setAdapter(climbTimeAdapter);
 
         Toast unfilledMessage = new Toast(this);
         unfilledMessage.setDuration(Toast.LENGTH_SHORT);
@@ -118,64 +119,6 @@ public class activityTeleOp extends AppCompatActivity {
             FSField.setText(u.untilNextComma(teleOpSaveString));
             teleOpSaveString = u.nextCommaOn(teleOpSaveString);
             FPField.setText(u.untilNextComma(teleOpSaveString));
-            teleOpSaveString = u.nextCommaOn(teleOpSaveString);
-
-            String currentButton = u.untilNextComma(teleOpSaveString);
-            switch(currentButton){
-                case "Level 1":
-                    level1Button.toggle();
-                    break;
-                case "Level 2":
-                    level2Button.toggle();
-                    break;
-                case "Level 3":
-                    level3Button.toggle();
-                    break;
-                case "None":
-                    noneButton.toggle();
-                    break;
-            }
-            teleOpSaveString = u.nextCommaOn(teleOpSaveString);
-
-            String timeToHang = u.untilNextComma(teleOpSaveString);
-            switch(timeToHang){
-                case "25":
-                    twentyFiveButton.toggle();
-                    break;
-                case "20":
-                    twentyButton.toggle();
-                    break;
-                case "15":
-                    fifteenButton.toggle();
-                    break;
-                case "10":
-                    tenButton.toggle();
-                    break;
-                case "5":
-                    fiveButton.toggle();
-                    break;
-                case "0":
-                    zeroButton.toggle();
-                    break;
-            }
-
-            String accuracyPosition = u.untilNextComma(teleOpSaveString);
-            switch(accuracyPosition){
-                case "When moving":
-                    pacManButton.toggle();
-                    break;
-                case "When unmoving":
-                    standStillButton.toggle();
-                    break;
-                case "About the same":
-                    noDifferenceButton.toggle();
-                    break;
-                case "Consistently bad accuracy":
-                    badAccuracyButton.toggle();
-                    break;
-            }
-
-
             teleOpSaveString = u.nextCommaOn(teleOpSaveString);
 
         }
@@ -216,9 +159,9 @@ public class activityTeleOp extends AppCompatActivity {
 
             teleOpInfo += u.getData(FPField) + ",";
 
-            teleOpInfo += u.getData(parkRadioGroup) + ",";
-            teleOpInfo += u.getData(endgameTimeGroup) + ",";
-            teleOpInfo += u.getData(accuracyRadioGroup) + ",";
+            teleOpInfo += u.getData(climbStatus) + ",";
+            teleOpInfo += u.getData(accuracyPosition) + ",";
+            teleOpInfo += u.getData(climbTime) + ",";
 
             Intent i = new Intent(this, activityAutonomous.class);
             i.putExtra("preMatch", preMatchSaveString);
@@ -235,10 +178,6 @@ public class activityTeleOp extends AppCompatActivity {
                 FSField.setText("0");
             if(u.getData(FPField).isEmpty())
                 FPField.setText("0");
-            if(u.getData(parkRadioGroup).isEmpty())
-                response = "Please select an endgame position";
-            else if(u.getData(endgameTimeGroup).isEmpty())
-                response = "Please select park time";
             else{
                 String teleOpInfo = "";
 
@@ -247,9 +186,9 @@ public class activityTeleOp extends AppCompatActivity {
 
                 teleOpInfo += u.getData(FPField) + ",";
 
-                teleOpInfo += u.getData(parkRadioGroup) + ",";
-                teleOpInfo += u.getData(endgameTimeGroup) + ",";
-                teleOpInfo += u.getData(accuracyRadioGroup) + ",";
+                teleOpInfo += u.getData(climbStatus) + ",";
+                teleOpInfo += u.getData(accuracyPosition) + ",";
+                teleOpInfo += u.getData(climbTime) + ",";
 
                 Intent i = new Intent(this, activityAfterMatch.class);
                 i.putExtra("preMatch", preMatchSaveString);
