@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/match_num_text"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="M #1"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp">
+
+            <TextView
+                android:id="@+id/score_summary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto: 5 | Tele: 12"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/hang_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Climb: Level 2"
+                android:textSize="12sp"
+                android:textColor="@color/aztech_blue"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/scout_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scouter"
+            android:textSize="12sp"
+            android:alpha="0.6"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

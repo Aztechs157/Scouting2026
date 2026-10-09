@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class U extends AppCompatActivity{
 
 
-    public final int DATA_VERSION = 1;
+    public final int DATA_VERSION = 2;
     // Characters to strip in input fields for stripText method
     public static final String [] DELIMITER = {",", ";", ":", "|", "\n"};
     public static final String [] WHITESPACE = {" "};
