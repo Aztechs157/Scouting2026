@@ -138,6 +138,7 @@ public class MatchData {
     /**
      * Converts qualitative accuracy strings to numeric multipliers.
      * Note: "More than 95%" is treated as 0.97 to account for occasional misses.
+     * Note: "Less than 10%" is treated as 0.05 to account for additional misses.
      */
     private double getAccuracyMultiplier(String accuracy) {
         if (accuracy == null) return 0;

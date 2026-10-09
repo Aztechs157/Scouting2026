@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:title="Pre-Match Scouting"
+                app:title="PRE-MATCH SCOUTING"
+                android:fontFamily="@font/good_times"
                 app:titleTextColor="@color/aztech_yellow" />
         </com.google.android.material.appbar.AppBarLayout>
 
