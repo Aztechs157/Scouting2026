@@ -192,21 +192,22 @@ public class activityAfterMatch extends AppCompatActivity {
                 String fileName = "match_scouting_"+ competitionLocation + "_" + teamNumber + "_" + matchNumber + ".csv";
 
                 try {
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
-                    if (!file.exists()) {
-                        file.createNewFile();
+                    // 1. Save to app-specific external directory (Android/data/com.example.roboticsscoutingmatchapp/files/Documents)
+                    File appDocDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+                    if (appDocDir != null) {
+                        if (!appDocDir.exists()) appDocDir.mkdirs();
+                        File appFile = new File(appDocDir, fileName);
+                        saveCsvToFile(appFile, preMatchSaveString, autoSaveString, teleOpSaveString, postMatchInfo);
                     }
 
-                    FileWriter fw = new FileWriter(file.getAbsoluteFile());
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    
-                    // Final Write: Pre + Auto + Tele + Post = 29 Columns
-                    bw.write(preMatchSaveString);
-                    bw.write(autoSaveString);
-                    bw.write(teleOpSaveString);
-                    bw.write(postMatchInfo);
-                    bw.flush();
-                    bw.close();
+                    // 2. Save to public Documents directory (/storage/emulated/0/Documents)
+                    File publicDocDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+                    if (publicDocDir != null) {
+                        if (!publicDocDir.exists()) publicDocDir.mkdirs();
+                        File publicFile = new File(publicDocDir, fileName);
+                        saveCsvToFile(publicFile, preMatchSaveString, autoSaveString, teleOpSaveString, postMatchInfo);
+                    }
+
                     Toast.makeText(this, "File " + fileName + " Saved", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     Log.e("activityAfterMatch", "File save failed", e);

@@ -1,8 +1,11 @@
 package com.example.roboticsscoutingmatchapp;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -136,12 +139,30 @@ public class activityDataShowing extends AppCompatActivity {
             refreshLeaderboard();
         });
 
+        // Request/Check "All Files Access" on Android 11+ if public files are scanned
+        checkStoragePermission();
+
         // Data Lifecycle: Load -> Setup UI -> Filter
         setupCharts();
         loadLocalData();
         setupDashboard();
         setupCompSpinner();
         setupMetricSpinner();
+    }
+
+    private void checkStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                try {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
+                }
+            }
+        }
     }
 
     private void setupCharts() {
@@ -170,32 +191,62 @@ public class activityDataShowing extends AppCompatActivity {
     }
 
     /**
-     * Scans the public Documents directory for match_scouting_*.csv files.
-     * Parses each file into a MatchData object for aggregation.
+     * Scans both app-specific and public directories for match_scouting_*.csv files.
+     * Checks multiple directory sources (App Documents, App External Root, Public Documents, Downloads)
+     * and deduplicates files by filename so imported files from other tablets show up properly.
      */
     private void loadLocalData() {
-        File docDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-        File[] files = docDir.listFiles((dir, name) -> name.startsWith("match_scouting_") && name.endsWith(".csv"));
+        allMatches.clear();
+        teamNumbers.clear();
+        competitions.clear();
 
-        if (files == null) return;
+        List<File> directoriesToScan = new ArrayList<>();
 
-        for (File file : files) {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                String line = br.readLine();
-                if (line != null) {
-                    // split with -1 to preserve empty trailing fields (like comments)
-                    String[] data = line.split(",", -1);
-                    MatchData match = new MatchData(data);
-                    if (match.teamNum != null && !match.teamNum.isEmpty()) {
-                        allMatches.add(match);
-                        teamNumbers.add(match.teamNum);
-                        if (match.competition != null && !match.competition.isEmpty()) {
-                            competitions.add(match.competition);
+        // 1. App-specific external storage (Android/data/com.example.roboticsscoutingmatchapp/files/Documents)
+        // Highly recommended for Android 10+ scoped storage since imported files copied here are always accessible.
+        File appDocDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        if (appDocDir != null) directoriesToScan.add(appDocDir);
+
+        File appFilesDir = getExternalFilesDir(null);
+        if (appFilesDir != null) directoriesToScan.add(appFilesDir);
+
+        // 2. Public Documents directory (/storage/emulated/0/Documents)
+        File publicDocDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        if (publicDocDir != null) directoriesToScan.add(publicDocDir);
+
+        // 3. Public Downloads directory (/storage/emulated/0/Download)
+        File publicDownloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        if (publicDownloadDir != null) directoriesToScan.add(publicDownloadDir);
+
+        Set<String> processedFileNames = new HashSet<>();
+
+        for (File dir : directoriesToScan) {
+            if (!dir.exists() || !dir.isDirectory()) continue;
+
+            File[] files = dir.listFiles((d, name) -> name.startsWith("match_scouting_") && name.endsWith(".csv"));
+            if (files == null) continue;
+
+            for (File file : files) {
+                if (processedFileNames.contains(file.getName())) continue;
+
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                    String line = br.readLine();
+                    if (line != null) {
+                        // split with -1 to preserve empty trailing fields (like comments)
+                        String[] data = line.split(",", -1);
+                        MatchData match = new MatchData(data);
+                        if (match.teamNum != null && !match.teamNum.isEmpty()) {
+                            allMatches.add(match);
+                            teamNumbers.add(match.teamNum);
+                            if (match.competition != null && !match.competition.isEmpty()) {
+                                competitions.add(match.competition);
+                            }
+                            processedFileNames.add(file.getName());
                         }
                     }
+                } catch (Exception e) {
+                    Log.e("DataShowing", "Error loading file: " + file.getName(), e);
                 }
-            } catch (Exception e) {
-                Log.e("DataShowing", "Error loading file: " + file.getName(), e);
             }
         }
     }
